@@ -1,0 +1,9 @@
+
+Changelog for django-sphinxdoc
+==============================
+
+
+Version 0.1 – 2009-?:
+-------------------------
+
+- [NEW] Initial release

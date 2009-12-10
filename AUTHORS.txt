@@ -1,0 +1,2 @@
+The primary author of django-sphinxdoc is Stefan Scherfke, who may be found
+online at http://stefan.sofa-rockers.org/.
