@@ -17,4 +17,4 @@ class App(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('app-index', (), {'slug': self.slug})
+        return ('doc-index', (), {'slug': self.slug})

@@ -11,21 +11,23 @@ app_info = {
 }
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns('sphinxdoc.views',
     url(
         r'^$',
         list_detail.object_list,
         app_info,
     ),
     url(
-        r'^(?P<slug>[-\w]+)/$',
-        'foo',
-        name='app-index',
+        r'^(?P<slug>[\w-]+)/$',
+        'documentation',
+        {'url': ''},
+        name='doc-index',
     ),
-    # url(
-    #     r'^(?P<lang>[a-z-]+)/$',
-    #     djangodocs.views.language,
-    # ),
+    url(
+        r'^(?P<slug>[\w-]+)/(?P<url>(([\w-]+)/)+)$',
+        'documentation',
+        name='doc-detail',
+    )
     # url(
     #     r'^(?P<lang>[a-z-]+)/(?P<version>[\w.-]+)/$',
     #     djangodocs.views.document,
