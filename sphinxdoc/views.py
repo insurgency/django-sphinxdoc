@@ -21,6 +21,7 @@ def documentation(request, slug, url):
             raise Http404('"%s" does not exist' % path)
     
     data = {
+        'app': app,
         'doc': json.load(open(path, 'rb')),
         'env': json.load(open(
                 os.path.join(app.path, 'globalcontext.json'), 'rb')),

@@ -28,12 +28,7 @@ urlpatterns = patterns('sphinxdoc.views',
         'documentation',
         name='doc-detail',
     )
-    # url(
-    #     r'^(?P<lang>[a-z-]+)/(?P<version>[\w.-]+)/$',
-    #     djangodocs.views.document,
-    #     {'url': ''},
-    #     name = 'document-index',
-    # ),
+    
     # url(
     #     r'^(?P<lang>[a-z-]+)/(?P<version>[\w.-]+)/search/$',
     #     djangodocs.views.search,
@@ -51,10 +46,5 @@ urlpatterns = patterns('sphinxdoc.views',
     # url(
     #     r'^(?P<lang>[a-z-]+)/(?P<version>[\w.-]+)/_source/(?P<path>.*)$',
     #     djangodocs.views.source,
-    # ),
-    # url(
-    #     r'^(?P<lang>[a-z-]+)/(?P<version>[\w.-]+)/(?P<url>[\w./-]*)/$',
-    #     djangodocs.views.document,
-    #     name = 'document-detail',
     # ),
 )

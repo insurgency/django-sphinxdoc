@@ -1,15 +1,42 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ block.super }} » {{ doc.title|safe }}{% endblock %}
-
-
-{# {% block billboard %} #}
-{#   <h2><a href="{% url document-index lang=lang, version=version %}">Django documentation</a></h2> #}
-{# {% endblock %} #}
-
+{% block title %}{{ block.super }} » {{ doc.title|striptags|safe }}{% endblock %}
 
 {% block content %}
+<div class="pagination-top">
+<a href="{{ app.get_absolute_url }}">{{ app.name }} documentation</a>
+    {% for p in doc.parents %}
+    » <a href="{{ p.link }}">{{ p.title|safe }}</a>
+    {% endfor %}
+    » {{ doc.title|safe }}<br /><br />
+    <span class="alignleft">
+        {% if doc.prev %}
+          Prev: <a href="{{ doc.prev.link }}">{{ doc.prev.title|safe }}</a>
+        {% endif %}</span>&nbsp;
+    <span class="alignright">
+        {% if doc.next %}
+          Next: <a href="{{ doc.next.link }}">{{ doc.next.title|safe }}</a>
+        {% endif %}</span>
+</div>
+<div class="sphinx">
     {{ doc.body|safe }}
+</div>
+<div class="pagination">
+    <span class="alignleft">
+        {% if doc.prev %}
+          Prev: <a href="{{ doc.prev.link }}">{{ doc.prev.title|safe }}</a>
+        {% endif %}</span>&nbsp;
+    <span class="alignright">
+        {% if doc.next %}
+          Next: <a href="{{ doc.next.link }}">{{ doc.next.title|safe }}</a>
+        {% endif %}</span><br /><br />
+<a href="{{ app.get_absolute_url }}">{{ app.name }} documentation</a>
+    {% for p in doc.parents %}
+    » <a href="{{ p.link }}">{{ p.title|safe }}</a>
+    {% endfor %}
+    » {{ doc.title|safe }}<br /><br />
+    Last update: {{ update_date|date:"Y-m-d H:i" }} (<a href="http://www.timeanddate.com/worldclock/city.html?n=37">CET</a>)
+</div>
 {% endblock content %}
 
 {% block sidebar %}
@@ -19,42 +46,9 @@
 </div>
 <div class="box">
     <h2>Search</h2>
+    <em>Not yet implemented</em>
     {# {% load docs %} #}
     {# {% search_form %} #}
-</div>
-<div class="box">
-    <h2>Browse</h2>
-    <ul>
-        {% if doc.prev %}
-          <li>Prev: <a href="{{ doc.prev.link }}">{{ doc.prev.title|safe }}</a></li>
-        {% endif %}
-        {% if doc.next %}
-          <li>Next: <a href="{{ doc.next.link }}">{{ doc.next.title|safe }}</a></li>
-        {% endif %}
-        {# <li><a href="{% url document-detail lang=lang, version=version, url="contents" %}">Table of contents</a></li> #}
-        {% for doc, title, accesskey, shorttitle in env.rellinks %}
-          {# <li><a href="{% url document-detail lang=lang, version=version, url=doc %}">{{ title }}</a></li> #}
-        {% endfor %}
-    </ul>
-</div>
-<div class="box">
-   <h2>You are here:</h2>
-    <ul>
-      {% block breadcrumbs %}
-        <li>
-          {# <a href="{% url document-index lang=lang, version=version %}">Django {{ version }} documentation</a> #}
-          {% for p in doc.parents %}
-            <ul><li><a href="{{ p.link }}">{{ p.title|safe }}</a>
-          {% endfor %}
-          <ul><li>{% block current-page-title %}{{ doc.title|safe }}{% endblock %}</li></ul>
-          {% for p in doc.parents %}</li></ul>{% endfor %}
-        </li>
-      {% endblock %}
-    </ul>
-</div>
-<div class="box">
-    <h3>Last update:</h3>
-    <div>{{ update_date|date:"F j, Y, P" }} (<a href="http://www.timeanddate.com/worldclock/city.html?n=64">CDT</a>)</div>
 </div>
     {{ block.super }}
 {% endblock sidebar %}
