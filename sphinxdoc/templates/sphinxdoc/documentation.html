@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="pagination-top">
-<a href="{{ app.get_absolute_url }}">{{ app.name }} documentation</a>
+    » <a href="{{ app.get_absolute_url }}">{{ app.name }} documentation</a>
     {% for p in doc.parents %}
     » <a href="{{ p.link }}">{{ p.title|safe }}</a>
     {% endfor %}
@@ -21,7 +21,7 @@
 <div class="sphinx">
     {{ doc.body|safe }}
 </div>
-<div class="pagination">
+<div class="pagination-bottom">
     <span class="alignleft">
         {% if doc.prev %}
           Prev: <a href="{{ doc.prev.link }}">{{ doc.prev.title|safe }}</a>
@@ -30,7 +30,7 @@
         {% if doc.next %}
           Next: <a href="{{ doc.next.link }}">{{ doc.next.title|safe }}</a>
         {% endif %}</span><br /><br />
-<a href="{{ app.get_absolute_url }}">{{ app.name }} documentation</a>
+    » <a href="{{ app.get_absolute_url }}">{{ app.name }} documentation</a>
     {% for p in doc.parents %}
     » <a href="{{ p.link }}">{{ p.title|safe }}</a>
     {% endfor %}
