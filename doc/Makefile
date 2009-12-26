@@ -61,9 +61,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/django-lastfm.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/django-sphinxdoc.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/django-lastfm.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/django-sphinxdoc.qhc"
 
 latex:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
