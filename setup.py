@@ -7,7 +7,7 @@ from setuptools import setup, find_packages
 import lastfm
 
 
-setup(name='django-sphinx',
+setup(name='django-sphinxdoc',
     version=lastfm.__version__,
     description='Easily integrate Sphinx documentation into your website.',
     author='Stefan Scherfke',
