@@ -1,0 +1,6 @@
+.. _quickstart:
+
+Quickstart
+==========
+
+*I have not written any documentation yet. Please be patient. ;-)*
