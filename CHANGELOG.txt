@@ -2,8 +2,14 @@
 Changelog for django-sphinxdoc
 ==============================
 
+Version 0.2 – 2009-12-30:
+-------------------------
 
-Version 0.1 – 2009-?:
+- [NEW] Documentation, general index and module index work
+- [NEW] Basic documentation written
+
+
+Version 0.1 – 2009-12-19:
 -------------------------
 
 - [NEW] Initial release

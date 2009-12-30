@@ -12,7 +12,10 @@ Contents:
     :maxdepth: 2
    
     quickstart
+    autobuild
+    change_appearance
     ref/index
+
 
 Indices and tables
 ==================

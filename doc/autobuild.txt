@@ -1,0 +1,44 @@
+.. _autobuild:
+
+Auto-build JSON files on ``hg pull/push``
+=========================================
+
+If you use `Mercurial (hg) <http://selenic.com/mercurial/>`_ for the application
+you are documenting, you can automatically call ``sphinx-build`` each time you
+push or pull to the clone on your webserver (the same machine running
+your Django project).
+
+You need two things to accomplish this:
+
+1. A script that performs the build
+2. Make ``hg`` call that script
+
+The build script
+----------------
+
+A good place for the script is the ``.hg/`` directory of your repository on the server. Change to that directory and create a file called ``makedoc``:
+
+.. sourcecode:: bash
+
+    #! /bin/bash
+
+    cd /path/to/your/repo
+    hg up
+    cd /path/to/your/repo/doc
+    make json
+
+Make ``hg`` call that script
+----------------------------
+
+Open ``.hg/hgrc`` in your favorite editor and add the following lines to it:
+
+.. sourcecode:: cfg
+
+    [hooks]
+    changegroup = /path/to/your/repo/.hg/makedoc
+    
+Done
+----
+
+Now, each time the repository is modified via a pull or push command, the
+documentation will be updated automatically.

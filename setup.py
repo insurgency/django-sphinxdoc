@@ -8,7 +8,7 @@ import lastfm
 
 
 setup(name='django-sphinxdoc',
-    version=lastfm.__version__,
+    version=sphinxdoc.__version__,
     description='Easily integrate Sphinx documentation into your website.',
     author='Stefan Scherfke',
     author_email='',
