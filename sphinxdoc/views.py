@@ -11,9 +11,16 @@ from django.utils import simplejson as json
 from sphinxdoc.models import App
 
 
+SPECIAL_TITLES = {
+    'genindex': 'General Index',
+    'modindex': 'Module Index',
+}
+
+
 def documentation(request, slug, url):
     app = get_object_or_404(App, slug=slug)
     url = url.strip('/')
+    page_name = os.path.basename(url)
     
     path = os.path.join(app.path, url, 'index.fjson')
     if not os.path.exists(path):
@@ -22,7 +29,7 @@ def documentation(request, slug, url):
             raise Http404('"%s" does not exist' % path)
 
     templates = (
-        'sphinxdoc/%s.html' % os.path.basename(url),
+        'sphinxdoc/%s.html' % page_name,
         'sphinxdoc/documentation.html',
     )
     
@@ -40,5 +47,8 @@ def documentation(request, slug, url):
         'redirect_from': request.GET.get('from', None),
     
     }
+    if 'title' not in data['doc']:
+        data['doc']['title'] = SPECIAL_TITLES[page_name]
+        
     return render_to_response(templates, data,
             context_instance=RequestContext(request))

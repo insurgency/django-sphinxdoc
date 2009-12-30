@@ -44,7 +44,8 @@
     {% for p in doc.parents %}
     » <a href="{{ p.link }}">{{ p.title|safe }}</a>
     {% endfor %}
-    » {{ doc.title|safe }}<br /><br />
+    » {{ doc.title|safe }}
+    <br /><br />
     Last update: {{ update_date|date:"Y-m-d H:i" }} (<a href="http://www.timeanddate.com/worldclock/city.html?n=37">CET</a>)
 </div>
 {% endblock content %}
