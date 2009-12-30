@@ -1,10 +1,11 @@
 # use glob syntax.
 syntax: glob
 
-# Misc
 *.pyc
 *~
 .DS_Store
+_build/*
+*.egg-info/*
 
 # switch to regexp syntax.
 # syntax: regexp

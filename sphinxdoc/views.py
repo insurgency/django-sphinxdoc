@@ -13,12 +13,18 @@ from sphinxdoc.models import App
 
 def documentation(request, slug, url):
     app = get_object_or_404(App, slug=slug)
+    url = url.strip('/')
     
     path = os.path.join(app.path, url, 'index.fjson')
     if not os.path.exists(path):
         path = os.path.dirname(path) + '.fjson'
         if not os.path.exists(path):
             raise Http404('"%s" does not exist' % path)
+
+    templates = (
+        'sphinxdoc/%s.html' % os.path.basename(url),
+        'sphinxdoc/documentation.html',
+    )
     
     data = {
         'app': app,
@@ -34,5 +40,5 @@ def documentation(request, slug, url):
         'redirect_from': request.GET.get('from', None),
     
     }
-    return render_to_response('sphinxdoc/documentation.html', data,
+    return render_to_response(templates, data,
             context_instance=RequestContext(request))
