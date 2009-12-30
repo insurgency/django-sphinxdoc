@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 
-import lastfm
+import sphinxdoc
 
 
 setup(name='django-sphinxdoc',
