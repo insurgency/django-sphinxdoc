@@ -11,11 +11,10 @@
     » {{ doc.title|safe }}
     {% if doc.prev or doc.next %}
     <br /><br />
-    <span class="alignleft">
+    <span class="left">
         {% if doc.prev %}
           Prev: <a href="{{ doc.prev.link }}">{{ doc.prev.title|safe }}</a>
-        {% endif %}</span>&nbsp;
-    <span class="alignright">
+        {% endif %}</span><span class="right">
         {% if doc.next %}
           Next: <a href="{{ doc.next.link }}">{{ doc.next.title|safe }}</a>
         {% endif %}</span>
@@ -30,11 +29,10 @@
 
 <div class="pagination-bottom">
     {% if doc.prev or doc.next %}
-    <span class="alignleft">
+    <span class="left">
         {% if doc.prev %}
           Prev: <a href="{{ doc.prev.link }}">{{ doc.prev.title|safe }}</a>
-        {% endif %}</span>&nbsp;
-    <span class="alignright">
+        {% endif %}</span><span class="right">
         {% if doc.next %}
           Next: <a href="{{ doc.next.link }}">{{ doc.next.title|safe }}</a>
         {% endif %}</span>
