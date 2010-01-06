@@ -67,3 +67,19 @@ def objects_inventory(request, slug):
     )
     response['Content-Type'] = "text/plain"
     return response
+
+def images(request, slug, path):
+    app = get_object_or_404(App, slug=slug)
+    return static.serve(
+        request, 
+        document_root = os.path.join(app.path, '_images'),
+        path = path,
+    )
+    
+def source(request, slug, path):
+    app = get_object_or_404(App, slug=slug)
+    return static.serve(
+        request,
+        document_root = os.path.join(app.path, '_sources'),
+        path = path,
+    )
