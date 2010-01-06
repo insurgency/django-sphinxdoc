@@ -7,6 +7,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson as json
+from django.views import static
 
 from sphinxdoc.models import App
 
@@ -14,6 +15,7 @@ from sphinxdoc.models import App
 SPECIAL_TITLES = {
     'genindex': 'General Index',
     'modindex': 'Module Index',
+    'search': 'Search',
 }
 
 
@@ -52,3 +54,16 @@ def documentation(request, slug, url):
         
     return render_to_response(templates, data,
             context_instance=RequestContext(request))
+
+def search(request, slug):
+    pass
+    
+def objects_inventory(request, slug):
+    app = get_object_or_404(App, slug=slug)
+    response = static.serve(
+        request, 
+        document_root = app.path,
+        path = "objects.inv",
+    )
+    response['Content-Type'] = "text/plain"
+    return response

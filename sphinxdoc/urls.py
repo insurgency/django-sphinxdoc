@@ -13,6 +13,16 @@ app_info = {
 
 urlpatterns = patterns('sphinxdoc.views',
     url(
+        r'^(?P<slug>[\w-]+)/search/$',
+        'search',
+        name='doc-search',
+    ),
+    url(
+        r'^(?P<slug>[\w-]+)/_objects/$',
+        'objects_inventory',
+        name='objects-inv',
+    ),
+    url(
         r'^$',
         list_detail.object_list,
         app_info,
@@ -27,13 +37,9 @@ urlpatterns = patterns('sphinxdoc.views',
         r'^(?P<slug>[\w-]+)/(?P<url>(([\w-]+)/)+)$',
         'documentation',
         name='doc-detail',
-    )
+    ),
     
-    # url(
-    #     r'^(?P<lang>[a-z-]+)/(?P<version>[\w.-]+)/search/$',
-    #     djangodocs.views.search,
-    #     name = 'document-search',
-    # ),
+    
     # url(
     #     r'^(?P<lang>[a-z-]+)/(?P<version>[\w.-]+)/_objects/$',
     #     djangodocs.views.objects_inventory,
