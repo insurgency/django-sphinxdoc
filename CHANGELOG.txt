@@ -2,6 +2,12 @@
 Changelog for django-sphinxdoc
 ==============================
 
+Version 0.3 – 1010-:
+-------------------------
+
+- [NEW] Views for images, sources and object inventory
+
+
 Version 0.2 – 2009-12-30:
 -------------------------
 
