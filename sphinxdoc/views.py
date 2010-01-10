@@ -56,7 +56,8 @@ def documentation(request, slug, url):
             context_instance=RequestContext(request))
 
 def search(request, slug):
-    pass
+    from django.http import HttpResponse
+    return HttpResponse('Not yet implemented.')
     
 def objects_inventory(request, slug):
     app = get_object_or_404(App, slug=slug)
