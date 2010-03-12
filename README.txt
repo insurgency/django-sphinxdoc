@@ -10,7 +10,7 @@ It’s based on `Django’s documentation app
 <http://code.djangoproject.com/browser/djangoproject.com/djangodocs>`_ and
 makes it more widely usable.
 
-django-sphinxdoc can handle multiple Sphinx projects (called „apps“ from now
+django-sphinxdoc can handle multiple Sphinx projects (called “apps” from now
 on). It takes the static body of the documentation from the JSON files Sphinx
 creates and embeds them in the content block of your site.
 
@@ -19,9 +19,7 @@ Requirements
 ------------
 
 This app is tested with Django 1.1. It might also work with older versions, but
-I haven’t tested it. 
-`Setuptools <http://pypi.python.org/pypi/setuptools>`_ is required to install 
-this app.
+I haven’t tested it.
 
 There are no other requirements.
 
@@ -38,10 +36,11 @@ file (e.g. ``cd ~/Downloads/django-sphinxdoc``). Then execute::
 If you checked out the repository and always want to use the newest version,
 type::
 
-    python setup.py develop
+    pip install -e path/to/django-sphinxdoc
     
 
 Usage
 -----
 
-Documentation on how to use this app can be found in the *docs/* directory.
+The Documentation can be found in the *docs/* directory or
+`online <http://stefan.sofa-rockers.org/docs/django-sphinxdoc/>`_.

@@ -2,20 +2,20 @@
 Changelog for django-sphinxdoc
 ==============================
 
-Version 0.3 – 1010-01-06:
--------------------------
+v0.3 – 1010-01-06:
+------------------
 
 - [NEW] Views for images, sources and object inventory
 
 
-Version 0.2 – 2009-12-30:
--------------------------
+v0.2 – 2009-12-30:
+------------------
 
 - [NEW] Documentation, general index and module index work
 - [NEW] Basic documentation written
 
 
-Version 0.1 – 2009-12-19:
--------------------------
+v0.1 – 2009-12-19:
+------------------
 
 - [NEW] Initial release

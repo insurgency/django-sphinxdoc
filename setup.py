@@ -1,23 +1,26 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
-from setuptools import setup, find_packages
+from distutils.core import setup
 
 
-import sphinxdoc
-
-
-setup(name='django-sphinxdoc',
-    version=sphinxdoc.__version__,
-    description='Easily integrate Sphinx documentation into your website.',
+setup(
+    name='django-sphinxdoc',
+    version='0.3.1',
     author='Stefan Scherfke',
-    author_email='',
-    license='BSD',
+    author_email='stefan at sofa-rockers.org',
+    description='Easily integrate Sphinx documentation into your website.',
+    long_description=open('README.txt').read(),
     url='http://stefan.sofa-rockers.org/django-sphinxdoc/',
     download_url='http://bitbucket.org/scherfke/django-sphinxdoc/downloads/',
-    packages=find_packages(),
-    include_package_data=True,
-    zip_safe=False,
+    license='BSD',
+    packages=[
+        'sphinxdoc', 
+        'sphinxdoc.templatetags',
+    ],
+    package_data={
+        'sphinxdoc': ['templates/sphinxdoc/*'],
+    },
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
@@ -27,5 +30,6 @@ setup(name='django-sphinxdoc',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Utilities'],
+        'Topic :: Utilities',
+    ],
 )
