@@ -3,11 +3,12 @@ Changelog for django-sphinxdoc
 ==============================
 
 v0.3.2 – 2010-03-14:
+--------------------
 
 - [FIX] Fixed a bug in ``setup.py``.
 
 
-v0.3.1 … 2010-03-11:
+v0.3.1 – 2010-03-11:
 --------------------
 
 - [CHANGE] Repackaging
