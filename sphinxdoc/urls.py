@@ -42,7 +42,7 @@ urlpatterns = patterns('sphinxdoc.views',
         name='doc-index',
     ),
     url(
-        r'^(?P<slug>[\w-]+)/(?P<url>(([\w-]+)/)+)$',
+        r'^(?P<slug>[\w-]+)/(?P<path>(([\w-]+)/)+)$',
         'documentation',
         name='doc-detail',
     ),

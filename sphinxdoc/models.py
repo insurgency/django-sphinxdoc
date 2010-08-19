@@ -18,3 +18,24 @@ class App(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('doc-index', (), {'slug': self.slug})
+        
+
+class Document(models.Model):
+    """
+    Represents a JSON encoded Sphinx document. The attributes ``title`` and
+    ``body`` dubicate the corresponding keys in ``content`` and are used for
+    the Haystack search.
+    
+    """
+    app = models.ForeignKey(App)
+    path = models.CharField(max_length=255)
+    content = models.TextField()
+    title = models.CharField(max_length=50)
+    body = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.path
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ('doc-detail', (), {'slug': self.app.slug, 'path': self.path})
