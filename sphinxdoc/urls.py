@@ -5,9 +5,9 @@ from django.views.generic import list_detail
 
 from sphinxdoc import models
 
-app_info = {
-    'queryset': models.App.objects.all().order_by('name'),
-    'template_object_name': 'app',
+project_info = {
+    'queryset': models.Project.objects.all().order_by('name'),
+    'template_object_name': 'project',
 }
 
 
@@ -15,7 +15,7 @@ urlpatterns = patterns('sphinxdoc.views',
     url(
         r'^$',
         list_detail.object_list,
-        app_info,
+        project_info,
     ),
     url(
         r'^(?P<slug>[\w-]+)/search/$',

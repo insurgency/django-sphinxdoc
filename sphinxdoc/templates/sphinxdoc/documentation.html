@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ block.super }} » {{ app.name }}{% for p in doc.parents %} » {{ p.title|striptags|safe }}{% endfor %} » {{ doc.title|striptags|safe }}{% endblock %}
+{% block title %}{{ block.super }} » {{ project.name }}{% for p in doc.parents %} » {{ p.title|striptags|safe }}{% endfor %} » {{ doc.title|striptags|safe }}{% endblock %}
 
 {% block content %}
 <div class="pagination-top">
-    » <a href="{{ app.get_absolute_url }}">{{ app.name }}</a>
+    » <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
     {% for p in doc.parents %}
     » <a href="{{ p.link }}">{{ p.title|safe }}</a>
     {% endfor %}
@@ -38,7 +38,7 @@
         {% endif %}</span>
     <br /><br />
     {% endif %}
-    » <a href="{{ app.get_absolute_url }}">{{ app.name }} documentation</a>
+    » <a href="{{ project.get_absolute_url }}">{{ project.name }} documentation</a>
     {% for p in doc.parents %}
     » <a href="{{ p.link }}">{{ p.title|safe }}</a>
     {% endfor %}

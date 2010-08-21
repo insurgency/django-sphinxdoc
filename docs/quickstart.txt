@@ -63,18 +63,18 @@ Install the required database table with:
     python manage.py syncdb
     
     
-Add an application
-------------------
+Add a project
+-------------
 
 If you visit your project’s admin panel, you’ll find the new application
-*Sphinxdoc* with the *App* model. If you add a new app, you’ll need to fill
-three form fields:
+*Sphinxdoc* with the *Project* model. If you add a new project, you’ll need to
+fill three form fields:
 
 Name:
-    The name of the documented application
+    The name of the documented project
     
 Slug:
-    A sluggified version of the application name; will be generated
+    A sluggified version of the project name; will be generated
     automatically
 
 Path:

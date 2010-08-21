@@ -10,9 +10,9 @@ It’s based on `Django’s documentation app
 <http://code.djangoproject.com/browser/djangoproject.com/djangodocs>`_ and
 makes it more widely usable.
 
-django-sphinxdoc can handle multiple Sphinx projects (called “apps” from now
-on). It takes the static body of the documentation from the JSON files Sphinx
-creates and embeds them in the content block of your site.
+django-sphinxdoc can handle multiple Sphinx projects. It takes the static body
+of the documentation from the JSON files Sphinx creates and embeds them in the
+content block of your site.
 
 
 Requirements

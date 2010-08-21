@@ -6,10 +6,10 @@ Models for django-sphinxdoc.
 from django.db import models
 
 
-class App(models.Model):
+class Project(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True,
-            help_text=u'Used in the URL for the app. Must be unique.')
+            help_text=u'Used in the URL for the project. Must be unique.')
     path = models.CharField(max_length=255)
     
     def __unicode__(self):
@@ -27,7 +27,7 @@ class Document(models.Model):
     the Haystack search.
     
     """
-    app = models.ForeignKey(App)
+    project = models.ForeignKey(Project)
     path = models.CharField(max_length=255)
     content = models.TextField()
     title = models.CharField(max_length=50)
@@ -38,4 +38,7 @@ class Document(models.Model):
         
     @models.permalink
     def get_absolute_url(self):
-        return ('doc-detail', (), {'slug': self.app.slug, 'path': self.path})
+        return ('doc-detail', (), {
+            'slug': self.project.slug, 
+            'path': self.path,
+        })

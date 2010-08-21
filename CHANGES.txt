@@ -2,6 +2,12 @@
 Changelog for django-sphinxdoc
 ==============================
 
+v0.x – 2010:
+------------
+
+- [CHANGE] Renamed ``App`` to ``Project``.
+
+
 v0.3.2 – 2010-03-14:
 --------------------
 

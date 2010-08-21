@@ -3,10 +3,10 @@
 Auto-build JSON files on ``hg pull/push``
 =========================================
 
-If you use `Mercurial (hg) <http://selenic.com/mercurial/>`_ for the application
-you are documenting, you can automatically call ``sphinx-build`` each time you
-push or pull to the clone on your webserver (the same machine running
-your Django project).
+If you use `Mercurial (hg) <http://selenic.com/mercurial/>`_ for the project you
+are documenting, you can automatically call ``sphinx-build`` each time you push
+or pull to the clone on your webserver (the same machine running your Django
+project).
 
 You need two things to accomplish this:
 

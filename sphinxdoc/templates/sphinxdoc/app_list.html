@@ -6,8 +6,8 @@
 <div>
     <h2 class="pagetitle">Documentation Overview</h2>
     <ul>
-    {% for app in app_list %}
-        <li><a href="{{ app.get_absolute_url }}">{{ app.name }}</a></li>
+    {% for project in project_list %}
+        <li><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></li>
     {% endfor %}
     </ul>
 </div>

@@ -3,13 +3,14 @@
 import datetime
 import os.path
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson as json
 from django.views import static
 
-from sphinxdoc.models import App
+from sphinxdoc.models import Project, Document
 
 
 SPECIAL_TITLES = {
@@ -19,16 +20,17 @@ SPECIAL_TITLES = {
 }
 
 
-def documentation(request, slug, url):
-    app = get_object_or_404(App, slug=slug)
-    url = url.strip('/')
-    page_name = os.path.basename(url)
+def documentation(request, slug, path):
+    app = get_object_or_404(Project, slug=slug)
+    path = path.strip('/')
+    page_name = os.path.basename(path)
     
-    path = os.path.join(app.path, url, 'index.fjson')
-    if not os.path.exists(path):
-        path = os.path.dirname(path) + '.fjson'
-        if not os.path.exists(path):
-            raise Http404('"%s" does not exist' % path)
+    try:
+        doc = Document.objects.get(project=project, 
+                path='%s/index.fjson' % path)
+    except ObjectDoesNotExist:
+        doc = get_object_or_404(Document, project=project, 
+                path='%s.fjson' % path)
 
     templates = (
         'sphinxdoc/%s.html' % page_name,
@@ -36,16 +38,16 @@ def documentation(request, slug, url):
     )
     
     data = {
-        'app': app,
+        'project': project,
         'doc': json.load(open(path, 'rb')),
         'env': json.load(open(
-                os.path.join(app.path, 'globalcontext.json'), 'rb')),
-        'version': app.name,
-        'docurl': url,
+                os.path.join(project.path, 'globalcontext.json'), 'rb')),
+        'version': project.name,
+        'docurl': self.get_absolute_url(),
         'update_date':  datetime.datetime.fromtimestamp(
-                os.path.getmtime(os.path.join(app.path, 'last_build'))),
-        'home': app.get_absolute_url(),
-        # 'search': urlresolvers.reverse('document-search', kwargs={'lang':lang, 'version':version}),
+                os.path.getmtime(os.path.join(project.path, 'last_build'))),
+        'home': project.get_absolute_url(),
+        'search': urlresolvers.reverse('doc-search', kwargs={'slug':slug}),
         'redirect_from': request.GET.get('from', None),
     
     }
@@ -60,27 +62,27 @@ def search(request, slug):
     return HttpResponse('Not yet implemented.')
     
 def objects_inventory(request, slug):
-    app = get_object_or_404(App, slug=slug)
+    project = get_object_or_404(Project, slug=slug)
     response = static.serve(
         request, 
-        document_root = app.path,
+        document_root = project.path,
         path = "objects.inv",
     )
     response['Content-Type'] = "text/plain"
     return response
 
 def images(request, slug, path):
-    app = get_object_or_404(App, slug=slug)
+    project = get_object_or_404(Project, slug=slug)
     return static.serve(
         request, 
-        document_root = os.path.join(app.path, '_images'),
+        document_root = os.path.join(project.path, '_images'),
         path = path,
     )
     
 def source(request, slug, path):
-    app = get_object_or_404(App, slug=slug)
+    project = get_object_or_404(Project, slug=slug)
     return static.serve(
         request,
-        document_root = os.path.join(app.path, '_sources'),
+        document_root = os.path.join(project.path, '_sources'),
         path = path,
     )
