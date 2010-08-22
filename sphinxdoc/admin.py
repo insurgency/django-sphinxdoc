@@ -5,12 +5,12 @@ Admin interface for the sphinxdoc app.
 
 from django.contrib import admin
 
-from sphinxdoc.models import App
+from sphinxdoc.models import Project
 
 
-class AppAdmin(admin.ModelAdmin):
+class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'path',)
     prepopulated_fields = {'slug': ('name',)}
     
 
-admin.site.register(App, AppAdmin)
+admin.site.register(Project, ProjectAdmin)

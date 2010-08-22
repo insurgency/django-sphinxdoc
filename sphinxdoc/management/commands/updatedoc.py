@@ -7,6 +7,9 @@ from django.core.management.base import BaseCommand, CommandError
 from sphinxdoc.models import Project, Document
 
 
+BUILDDIR = '_build'
+
+
 class Command(BaseCommand):
     args = '<project_slug project_slug ...>'
     help = ('Updates the documentation and the search index for the specified '
@@ -40,7 +43,16 @@ class Command(BaseCommand):
                 cmd = 'sphinx-build'
                 if virtualenv:
                     cmd = os.path.join(virtualenv, cmd)
-                # TODO: append args and path
+                cmd = [
+                    cmd,
+                    '-b',
+                    'json',
+                    '-d',
+                    os.path.join(project.path, BUILDDIR, 'doctrees'),
+                    project.path,
+                    os.path.join(project.path, BUILDDIR, 'json'),
+                ]
+                subprocess.call(cmd)
 
             print 'Importing JSON files for "%s" ...' % slug
             
