@@ -5,12 +5,15 @@ Models for django-sphinxdoc.
 
 from django.db import models
 
+from sphinxdoc.validators import validate_isdir
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True,
             help_text=u'Used in the URL for the project. Must be unique.')
-    path = models.CharField(max_length=255)
+    path = models.CharField(max_length=255, validators=[validate_isdir],
+            help_text=u'Directory that contains Sphinx’ <tt>conf.py</tt>.')
     
     def __unicode__(self):
         return self.name
