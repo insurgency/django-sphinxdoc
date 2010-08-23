@@ -1,4 +1,8 @@
+# encoding: utf-8
+
+import json
 import optparse
+import os
 import os.path
 import subprocess
 
@@ -8,6 +12,12 @@ from sphinxdoc.models import Project, Document
 
 
 BUILDDIR = '_build'
+EXTENSION = '.fjson'
+SPECIAL_TITLES = {
+    'genindex': 'General Index',
+    'modindex': 'Module Index',
+    'search': 'Search',
+}
 
 
 class Command(BaseCommand):
@@ -40,22 +50,33 @@ class Command(BaseCommand):
 
             if build:
                 print 'Running "sphinx--build" for "%s" ...' % slug
-                cmd = 'sphinx-build'
-                if virtualenv:
-                    cmd = os.path.join(virtualenv, cmd)
-                cmd = [
-                    cmd,
-                    '-b',
-                    'json',
-                    '-d',
-                    os.path.join(project.path, BUILDDIR, 'doctrees'),
-                    project.path,
-                    os.path.join(project.path, BUILDDIR, 'json'),
-                ]
-                subprocess.call(cmd)
+                self.build(project, virtualenv)
 
             print 'Importing JSON files for "%s" ...' % slug
+            self.import_files(project)
             
             print 'Updating search index for "%s" ...' % slug
             
             print 'Done'
+            
+    def build(self, project, virtualenv):
+        cmd = 'sphinx-build'
+        if virtualenv:
+            cmd = os.path.join(virtualenv, cmd)
+        cmd = [
+            cmd,
+            '-b',
+            'json',
+            '-d',
+            os.path.join(project.path, BUILDDIR, 'doctrees'),
+            project.path,
+            os.path.join(project.path, BUILDDIR, 'json'),
+        ]
+        subprocess.call(cmd)
+        
+    def import_files(self, project):
+        path = os.path.join(project.path, BUILDDIR, 'json')
+        for dirpath, dirnames, filenames in os.walk(path):
+            for name in filter(lambda x: x.endswith(EXTENSION), filenames):
+                path = os.path.join(dirpath, name)
+                doc = json.load(open(path, 'r'))

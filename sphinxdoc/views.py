@@ -13,13 +13,6 @@ from django.views import static
 from sphinxdoc.models import Project, Document
 
 
-SPECIAL_TITLES = {
-    'genindex': 'General Index',
-    'modindex': 'Module Index',
-    'search': 'Search',
-}
-
-
 def documentation(request, slug, path):
     app = get_object_or_404(Project, slug=slug)
     path = path.strip('/')
