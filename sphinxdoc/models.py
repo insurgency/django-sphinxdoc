@@ -33,7 +33,7 @@ class Document(models.Model):
     project = models.ForeignKey(Project)
     path = models.CharField(max_length=255)
     content = models.TextField()
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=255)
     body = models.TextField(blank=True)
     
     def __unicode__(self):

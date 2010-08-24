@@ -52,6 +52,9 @@ class Command(BaseCommand):
                 print 'Running "sphinx--build" for "%s" ...' % slug
                 self.build(project, virtualenv)
 
+            print 'Deleting old entries from database ...'
+            self.delete_documents(project)
+
             print 'Importing JSON files for "%s" ...' % slug
             self.import_files(project)
             
@@ -74,9 +77,34 @@ class Command(BaseCommand):
         ]
         subprocess.call(cmd)
         
+    def delete_documents(self, project):
+        Document.objects.filter(project=project).delete()
+        
     def import_files(self, project):
         path = os.path.join(project.path, BUILDDIR, 'json')
         for dirpath, dirnames, filenames in os.walk(path):
             for name in filter(lambda x: x.endswith(EXTENSION), filenames):
-                path = os.path.join(dirpath, name)
-                doc = json.load(open(path, 'r'))
+                # Full path to the json file
+                filepath = os.path.join(dirpath, name)
+                
+                # Get path relative to the build dir w/o file extension
+                relpath = os.path.relpath(filepath, path)[:-len(EXTENSION)]
+                
+                # Some files have no title or body attribute
+                doc = json.load(open(filepath, 'rb'))
+                if 'title' not in doc:
+                    page_name = os.path.basename(relpath)
+                    doc['title'] = SPECIAL_TITLES[page_name]
+                if 'body' not in doc:
+                    doc['body'] = ''
+                
+                # Finally create the Document
+                d = Document(
+                    project=project,
+                    path=relpath,
+                    content=json.dumps(doc),
+                    title=doc['title'],
+                    body=doc['body']
+                )
+                d.full_clean()
+                d.save()
