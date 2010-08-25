@@ -6,6 +6,7 @@ import os
 import os.path
 import subprocess
 
+from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
 from sphinxdoc.models import Project, Document
@@ -47,7 +48,7 @@ class Command(BaseCommand):
                 project = Project.objects.get(slug=slug)
             except Project.DoesNotExist:
                 raise CommandError('Project "%s" does not exist' % slug)
-
+            
             if build:
                 print 'Running "sphinx--build" for "%s" ...' % slug
                 self.build(project, virtualenv)
@@ -59,6 +60,7 @@ class Command(BaseCommand):
             self.import_files(project)
             
             print 'Updating search index for "%s" ...' % slug
+            self.update_haystack()
             
             print 'Done'
             
@@ -108,3 +110,7 @@ class Command(BaseCommand):
                 )
                 d.full_clean()
                 d.save()
+                
+    def update_haystack(self):
+        appname = __name__.split('.')[0]
+        call_command('update_index', appname)
