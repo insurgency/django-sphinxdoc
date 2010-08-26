@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="pagination-top">
-    » <a href="{{ project.get_absolute_url }}">{{ project.name }}</a>
+    » <a href="{{ project.get_absolute_url }}">{{ project.name }} documentation</a>
     {% for p in doc.parents %}
     » <a href="{{ p.link }}">{{ p.title|safe }}</a>
     {% endfor %}

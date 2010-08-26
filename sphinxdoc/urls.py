@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, url
 from django.views.generic import list_detail
 
 from sphinxdoc import models
@@ -38,7 +38,7 @@ urlpatterns = patterns('sphinxdoc.views',
     url(
         r'^(?P<slug>[\w-]+)/$',
         'documentation',
-        {'url': ''},
+        {'path': ''},
         name='doc-index',
     ),
     url(
