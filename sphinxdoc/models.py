@@ -43,5 +43,5 @@ class Document(models.Model):
     def get_absolute_url(self):
         return ('doc-detail', (), {
             'slug': self.project.slug, 
-            'path': self.path,
+            'path': self.path + '/',
         })

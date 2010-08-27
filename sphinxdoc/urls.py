@@ -4,12 +4,13 @@ from django.conf.urls.defaults import patterns, url
 from django.views.generic import list_detail
 
 from sphinxdoc import models
+from sphinxdoc.views import ProjectSearchView
+
 
 project_info = {
     'queryset': models.Project.objects.all().order_by('name'),
     'template_object_name': 'project',
 }
-
 
 urlpatterns = patterns('sphinxdoc.views',
     url(
@@ -19,7 +20,7 @@ urlpatterns = patterns('sphinxdoc.views',
     ),
     url(
         r'^(?P<slug>[\w-]+)/search/$',
-        'search',
+        ProjectSearchView(),
         name='doc-search',
     ),
     url(

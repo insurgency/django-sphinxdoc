@@ -8,6 +8,7 @@ from sphinxdoc.models import Document
 class DocumentIndex(indexes.SearchIndex):
     text = indexes.CharField(document=True, use_template=True)
     title = indexes.CharField(model_attr='title')
+    project = indexes.IntegerField(model_attr='project_id')
     
     def get_queryset(self):
         """Used when the entire index for model is updated."""
