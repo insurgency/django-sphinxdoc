@@ -1,6 +1,7 @@
 # encoding: utf-8
 """
 Models for django-sphinxdoc.
+
 """
 
 from django.db import models
@@ -9,6 +10,12 @@ from sphinxdoc.validators import validate_isdir
 
 
 class Project(models.Model):
+    """
+    Represents a Sphinx project. Each ``Project`` has a name, a slug and a path
+    to the root directory of a Sphinx project (where Sphinx’ ``conf.py``) is
+    located).
+    
+    """
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True,
             help_text=u'Used in the URL for the project. Must be unique.')

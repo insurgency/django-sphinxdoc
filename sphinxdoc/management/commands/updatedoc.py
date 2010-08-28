@@ -1,4 +1,8 @@
 # encoding: utf-8
+"""
+Management command for updadng the documentation of one or more projects.
+
+"""
 
 import json
 import optparse
@@ -22,7 +26,18 @@ SPECIAL_TITLES = {
 
 
 class Command(BaseCommand):
-    args = '<project_slug project_slug ...>'
+    """
+    Update (and optionally build) the *Sphinx* documentation for one ore more
+    projects.
+    
+    You need to pass the slug of at least one project. If you pass the optional
+    parameter ``-b``, the command ``sphinx-build`` will be run for each project
+    before their files are read. If your project(s) are located in a different
+    *virtualenv* than your django site, you can provide a path to its
+    interpreter with ``--virtualenv path/to/env/bin/`` 
+    
+    """
+    args = '[-b [--virtualenv <path/to/bin/>]] <project_slug project_slug ...>'
     help = ('Updates the documentation and the search index for the specified '
             'projects.')    
     option_list = BaseCommand.option_list + (
@@ -40,6 +55,11 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
+        """
+        Updates (and optionally builds) the documenation for all projects in
+        ``args``.
+        
+        """
         build = options['build']
         virtualenv = options['virtualenv']
         
@@ -64,7 +84,12 @@ class Command(BaseCommand):
             
             print 'Done'
             
-    def build(self, project, virtualenv):
+    def build(self, project, virtualenv=''):
+        """
+        Runs ``sphinx-build`` for ``project``. You can also specify a path to 
+        the bin-directory of a ``virtualenv``, if your project requires it.
+        
+        """
         cmd = 'sphinx-build'
         if virtualenv:
             cmd = os.path.join(virtualenv, cmd)
@@ -77,12 +102,18 @@ class Command(BaseCommand):
             project.path,
             os.path.join(project.path, BUILDDIR, 'json'),
         ]
+        print 'Executing %s' % ' '.join(cmd)
         subprocess.call(cmd)
         
     def delete_documents(self, project):
+        """Deletes all documents for ``project``."""
         Document.objects.filter(project=project).delete()
         
     def import_files(self, project):
+        """
+        Creates a :class:`sphinxdoc.models.Document` instance for each JSON
+        file of ``project``.
+        """
         path = os.path.join(project.path, BUILDDIR, 'json')
         for dirpath, dirnames, filenames in os.walk(path):
             for name in filter(lambda x: x.endswith(EXTENSION), filenames):
@@ -112,5 +143,6 @@ class Command(BaseCommand):
                 d.save()
                 
     def update_haystack(self):
+        """Updates Haystack’s search index."""
         appname = __name__.split('.')[0]
         call_command('update_index', appname)

@@ -1,7 +1,8 @@
 # encoding: utf-8
-'''
+"""
 Admin interface for the sphinxdoc app.
-'''
+
+"""
 
 from django.contrib import admin
 
@@ -9,11 +10,19 @@ from sphinxdoc.models import Project, Document
 
 
 class ProjectAdmin(admin.ModelAdmin):
+    """Admin interface for :class:`sphinx.models.Project`."""
     list_display = ('name', 'path',)
     prepopulated_fields = {'slug': ('name',)}
     
 
 class DocumentAdmin(admin.ModelAdmin):
+    """
+    Admin interface for :class:`sphinx.models.Document`.
+    
+    Normally, you shouldn’t need this, since you create new documents via
+    the management command.
+    
+    """
     pass
     
 

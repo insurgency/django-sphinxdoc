@@ -1,4 +1,8 @@
 # encoding: utf-8
+"""
+URL conf for django-sphinxdoc.
+
+"""
 
 from django.conf.urls.defaults import patterns, url
 from django.views.generic import list_detail
