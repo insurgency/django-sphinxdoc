@@ -1,0 +1,7 @@
+.. _ref-urls:
+
+URLs
+====
+
+.. automodule:: sphinxdoc.urls
+    :members:

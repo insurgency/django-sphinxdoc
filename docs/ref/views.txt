@@ -2,3 +2,16 @@
 
 Views
 =====
+
+.. automodule:: sphinxdoc.views
+
+    .. autoclass:: ProjectSearchView
+        :members:
+    
+    .. autofunction:: documentation(request, slug, path)
+    
+    .. autofunction:: objects_inventory(request, slug, path)
+    
+    .. autofunction:: images(request, slug, path)
+    
+    .. autofunction:: source(request, slug, path)

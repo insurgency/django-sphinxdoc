@@ -1,0 +1,7 @@
+.. _ref-search-indexes:
+
+Search Indexes
+==============
+
+.. automodule:: sphinxdoc.search_indexes
+    :members:

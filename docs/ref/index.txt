@@ -6,5 +6,11 @@ API-Reference
 .. toctree::
     :maxdepth: 1
     
-    templatetags
+    admin
+    forms
+    management
+    models
+    search_indexes
+    urls
+    validators
     views

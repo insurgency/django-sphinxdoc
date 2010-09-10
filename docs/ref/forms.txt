@@ -1,0 +1,7 @@
+.. _ref-forms:
+
+Forms
+=====
+
+.. automodule:: sphinxdoc.forms
+    :members:

@@ -1,0 +1,7 @@
+.. _ref-models:
+
+Models
+======
+
+.. automodule:: sphinxdoc.models
+    :members:
