@@ -109,7 +109,8 @@ def source(request, slug, path):
 
 class ProjectSearchView(SearchView):
     """
-    Handles a search request and displays the results as a simple list.
+    Inherits :class:`SearchView` and handles a search request and displays the
+    results as a simple list.
     
     """
     def __init__(self):
@@ -122,7 +123,7 @@ class ProjectSearchView(SearchView):
     
     def build_form(self):
         """
-        Instantiates the form the class should use to process the search query.
+        Instantiates the form that should be used to process the search query.
         
         """        
         return self.form_class(self.request.GET, slug=self.slug,

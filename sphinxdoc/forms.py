@@ -15,8 +15,8 @@ class ProjectSearchForm(SearchForm):
     Custom search form for Haystack.
     
     It narrows the search query set to instances of 
-    :class:`sphinxdoc.models.Document` that belong to the current
-    :class:`sphinxdoc.models.Project`.
+    :class:`~sphinxdoc.models.Document` that belong to the current
+    :class:`~sphinxdoc.models.Project`.
     
     """
     def __init__(self, *args, **kwargs):

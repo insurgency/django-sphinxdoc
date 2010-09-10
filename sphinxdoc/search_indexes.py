@@ -11,7 +11,7 @@ from sphinxdoc.models import Document
 
 class DocumentIndex(indexes.SearchIndex):
     """
-    Index for :class:`sphinxdoc.models.Document`.
+    Index for :class:`~sphinxdoc.models.Document`.
     
     """
     text = indexes.CharField(document=True, use_template=True)

@@ -1,6 +1,6 @@
 # encoding: utf-8
 """
-Management command for updadng the documentation of one or more projects.
+Management command for updading the documentation of one or more projects.
 
 """
 
@@ -20,7 +20,7 @@ BUILDDIR = '_build'
 EXTENSION = '.fjson'
 SPECIAL_TITLES = {
     'genindex': 'General Index',
-    'modindex': 'Module Index',
+    'py-modindex': 'Module Index',
     'search': 'Search',
 }
 
@@ -111,7 +111,7 @@ class Command(BaseCommand):
         
     def import_files(self, project):
         """
-        Creates a :class:`sphinxdoc.models.Document` instance for each JSON
+        Creates a :class:`~sphinxdoc.models.Document` instance for each JSON
         file of ``project``.
         """
         path = os.path.join(project.path, BUILDDIR, 'json')
