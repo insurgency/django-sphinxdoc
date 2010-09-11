@@ -29,7 +29,7 @@ class UltraMagicString(object):
 
 setup(
     name='django-sphinxdoc',
-    version='0.3.2',
+    version='1.0.0',
     author='Stefan Scherfke',
     author_email='stefan at sofa-rockers.org',
     description='Easily integrate Sphinx documentation into your website.',
@@ -38,14 +38,15 @@ setup(
     download_url='http://bitbucket.org/scherfke/django-sphinxdoc/downloads/',
     license='BSD',
     packages=[
-        'sphinxdoc', 
-        # 'sphinxdoc.templatetags',
+        'sphinxdoc',
+        'sphinxdoc.management',
+        'sphinxdoc.management.commands',
     ],
     package_data={
         'sphinxdoc': ['templates/sphinxdoc/*'],
     },
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
