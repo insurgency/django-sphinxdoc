@@ -18,25 +18,31 @@ content block of your site.
 Requirements
 ------------
 
-This app is tested with Django 1.1. It might also work with older versions, but
-I haven’t tested it.
-
-There are no other requirements.
+This app is tested with Django 1.1 and 1.2. It might also work with older
+versions, but I haven’t tested it. You should also have Sphinx >= 1.0.
 
 
 Installation
 ------------
 
-If you read this, you have probably managed to extract the archive containing
-these files. Next, open a Terminal and `cd` to the directory containing this
-file (e.g. ``cd ~/Downloads/django-sphinxdoc``). Then execute::
+You can either install this app with `PIP <http://pypi.python.org/pypi/pip>`_ 
+(or ``easy_install``):
 
-    python setup.py install
+.. sourcecode:: bash
+
+    $ pip install django-sphinxdoc
+    $ # or:
+    $ easy_install django-sphinxdoc
+
+or download and install it manually:
+
+.. sourcecode:: bash
+
+    $ cd where/you/put/django-sphinxdoc/
+    $ python setup.py install
     
-If you checked out the repository and always want to use the newest version,
-type::
-
-    pip install -e path/to/django-sphinxdoc
+Use `this URL <http://bitbucket.org/scherfke/django-sphinxdoc/>`_ for cloning if
+you want to install this app in development mode.
     
 
 Usage

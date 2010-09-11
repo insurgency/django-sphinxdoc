@@ -2,9 +2,12 @@
 Changelog for django-sphinxdoc
 ==============================
 
-v0.x – 2010:
-------------
+v1.0.0 – 2010-09-11:
+--------------------
 
+- [NEW] Documentation can be searched via Haystack. The new management command
+  ``updatedoc`` imports the JSON files into the database and updates Haystack’s
+  search index.
 - [CHANGE] Renamed ``App`` to ``Project``.
 
 
