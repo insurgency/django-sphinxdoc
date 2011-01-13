@@ -6,37 +6,30 @@ This Django application allows you to integrate any `Sphinx
 <http://sphinx.pocoo.org/>`_ documentation directly into your Django powered
 website instead of just serving the static files.
 
-It’s based on `Django’s documentation app
-<http://code.djangoproject.com/browser/djangoproject.com/djangodocs>`_ and
-makes it more widely usable.
-
-django-sphinxdoc can handle multiple Sphinx projects. It takes the static body
-of the documentation from the JSON files Sphinx creates and embeds them in the
-content block of your site.
+Django-sphinxdoc can handle multiple Sphinx projects and offers a `Haystack
+<http://haystacksearch.org/>`_ powered search. Future versions will enable
+comments and add RSS feeds.
 
 
 Requirements
 ------------
 
-This app is tested with Django 1.1 and 1.2. It might also work with older
-versions, but I haven’t tested it. You should also have Sphinx >= 1.0.
+This app is tested with Django 1.1 and 1.2. You also need `Sphinx
+<http://sphinx.pocoo.org/>`_ >= 1.0 and `Haystack
+<http://haystacksearch.org/>`_.
 
 
 Installation
 ------------
 
 You can either install this app with `PIP <http://pypi.python.org/pypi/pip>`_ 
-(or ``easy_install``):
-
-.. sourcecode:: bash
+(or ``easy_install``)::
 
     $ pip install django-sphinxdoc
     $ # or:
     $ easy_install django-sphinxdoc
 
-or download and install it manually:
-
-.. sourcecode:: bash
+or download and install it manually::
 
     $ cd where/you/put/django-sphinxdoc/
     $ python setup.py install
