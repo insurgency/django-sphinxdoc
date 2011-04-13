@@ -89,7 +89,7 @@ def images(request, slug, path):
     project = get_object_or_404(Project, slug=slug)
     return serve(
         request, 
-        document_root = os.path.join(project.path, '_images'),
+        document_root = os.path.join(project.path, BUILDDIR, '_images'),
         path = path,
     )
     
@@ -102,7 +102,7 @@ def source(request, slug, path):
     project = get_object_or_404(Project, slug=slug)
     return serve(
         request,
-        document_root = os.path.join(project.path, '_sources'),
+        document_root = os.path.join(project.path, BUILDDIR, '_sources'),
         path = path,
     )
     
