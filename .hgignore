@@ -1,12 +1,9 @@
-# use glob syntax.
 syntax: glob
 
 *.pyc
 *~
 .DS_Store
 _build/*
+dist/*
+MANIFEST
 *.egg-info/*
-
-# switch to regexp syntax.
-# syntax: regexp
-# ^\.pc/
