@@ -3,7 +3,6 @@
 Custom form validators for this app.
 
 """
-
 import os.path
 
 from django.core.exceptions import ValidationError
