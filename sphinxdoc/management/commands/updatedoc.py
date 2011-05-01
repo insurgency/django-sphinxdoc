@@ -90,7 +90,7 @@ class Command(BaseCommand):
         """
         cmd = 'sphinx-build'
         if virtualenv:
-            cmd = os.path.join(virtualenv, cmd)
+            cmd = os.path.expanduser(os.path.join(virtualenv, cmd))
         cmd = [
             cmd,
             '-b',

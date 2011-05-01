@@ -2,6 +2,13 @@
 Changelog for django-sphinxdoc
 ==============================
 
+
+v1.0.1 – :
+--------------------
+
+- [FIX] Fixed a bug with the updatedoc command ``~`` in paths.
+
+
 v1.0.0 – 2010-09-11:
 --------------------
 
