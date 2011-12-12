@@ -31,6 +31,14 @@ urlpatterns = patterns('sphinxdoc.views',
         'images',
     ),
     url(
+        r'^(?P<slug>[\w-]+)/_static/(?P<path>.*)$',
+        'static',
+    ),
+    url(
+        r'^(?P<slug>[\w-]+)/_downloads/(?P<path>.*)$',
+        'downloads',
+    ),
+    url(
         r'^(?P<slug>[\w-]+)/_source/(?P<path>.*)$',
         'source',
     ),

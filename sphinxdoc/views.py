@@ -96,6 +96,34 @@ def images(request, slug, path):
 
 
 @cache_page(60 * CACHE_MINUTES)
+def static(request, slug, path):
+    """
+    Shows the specified static file.
+
+    """
+    project = get_object_or_404(Project, slug=slug)
+    return serve(
+        request,
+        document_root=os.path.join(project.path, BUILDDIR, '_static'),
+        path=path,
+    )
+
+
+@cache_page(60 * CACHE_MINUTES)
+def downloads(request, slug, path):
+    """
+    Shows the specified downloads file.
+
+    """
+    project = get_object_or_404(Project, slug=slug)
+    return serve(
+        request,
+        document_root=os.path.join(project.path, BUILDDIR, '_downloads'),
+        path=path,
+    )
+
+
+@cache_page(60 * CACHE_MINUTES)
 def source(request, slug, path):
     """
     Shows the ReST source of a document.
