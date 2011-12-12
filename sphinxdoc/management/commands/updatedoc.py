@@ -20,6 +20,7 @@ EXTENSION = '.fjson'
 SPECIAL_TITLES = {
     'genindex': 'General Index',
     'py-modindex': 'Module Index',
+    'np-modindex': 'Module Index',
     'search': 'Search',
 }
 
