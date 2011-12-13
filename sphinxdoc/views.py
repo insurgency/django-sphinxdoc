@@ -82,57 +82,15 @@ def objects_inventory(request, slug):
 
 
 @cache_page(60 * CACHE_MINUTES)
-def images(request, slug, path):
+def sphinx_serve(request, slug, type_, path):
     """
-    Shows the specified image.
-
-    """
-    project = get_object_or_404(Project, slug=slug)
-    return serve(
-        request,
-        document_root=os.path.join(project.path, BUILDDIR, '_images'),
-        path=path,
-    )
-
-
-@cache_page(60 * CACHE_MINUTES)
-def static(request, slug, path):
-    """
-    Shows the specified static file.
+    Serves sphinx static and other files.
 
     """
     project = get_object_or_404(Project, slug=slug)
     return serve(
         request,
-        document_root=os.path.join(project.path, BUILDDIR, '_static'),
-        path=path,
-    )
-
-
-@cache_page(60 * CACHE_MINUTES)
-def downloads(request, slug, path):
-    """
-    Shows the specified downloads file.
-
-    """
-    project = get_object_or_404(Project, slug=slug)
-    return serve(
-        request,
-        document_root=os.path.join(project.path, BUILDDIR, '_downloads'),
-        path=path,
-    )
-
-
-@cache_page(60 * CACHE_MINUTES)
-def source(request, slug, path):
-    """
-    Shows the ReST source of a document.
-
-    """
-    project = get_object_or_404(Project, slug=slug)
-    return serve(
-        request,
-        document_root=os.path.join(project.path, BUILDDIR, '_sources'),
+        document_root=os.path.join(project.path, BUILDDIR, type_),
         path=path,
     )
 
