@@ -116,3 +116,8 @@ class ProjectSearchView(SearchView):
         """
         return self.form_class(self.request.GET, slug=self.slug,
                 searchqueryset=self.searchqueryset, load_all=self.load_all)
+
+    def extra_context(self):
+        return {
+            'project': Project.objects.get(slug=self.slug),
+        }
