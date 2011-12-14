@@ -143,5 +143,4 @@ class Command(BaseCommand):
 
     def update_haystack(self):
         """Updates Haystack’s search index."""
-        appname = __name__.split('.')[0]
-        call_command('update_index', appname)
+        call_command('rebuild_index', interactive=False)
