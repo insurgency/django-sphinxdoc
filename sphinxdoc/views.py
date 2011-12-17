@@ -74,7 +74,7 @@ def objects_inventory(request, slug):
     project = get_object_or_404(Project, slug=slug)
     response = serve(
         request,
-        document_root=project.path,
+        document_root=os.path.join(project.path, BUILDDIR),
         path='objects.inv',
     )
     response['Content-Type'] = 'text/plain'
