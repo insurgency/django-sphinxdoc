@@ -118,8 +118,9 @@ class ProjectSearchView(SearchView):
                 searchqueryset=self.searchqueryset, load_all=self.load_all)
 
     def extra_context(self):
+        project = Project.objects.get(slug=self.slug)
         return {
-            'project': Project.objects.get(slug=self.slug),
+            'project': project,
             'env': json.load(open(
                     os.path.join(project.path, BUILDDIR,
                     'globalcontext.json'), 'rb')),
