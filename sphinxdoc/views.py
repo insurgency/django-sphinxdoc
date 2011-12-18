@@ -55,7 +55,7 @@ def documentation(request, slug, path):
         'env': json.load(open(
                 os.path.join(project.path, BUILDDIR,
                 'globalcontext.json'), 'rb')),
-        'update_date':  datetime.datetime.fromtimestamp(
+        'update_date': datetime.datetime.fromtimestamp(
                 os.path.getmtime(os.path.join(project.path, BUILDDIR,
                 'last_build'))),
         'search': urlresolvers.reverse('doc-search', kwargs={'slug': slug}),
@@ -120,4 +120,10 @@ class ProjectSearchView(SearchView):
     def extra_context(self):
         return {
             'project': Project.objects.get(slug=self.slug),
+            'env': json.load(open(
+                    os.path.join(project.path, BUILDDIR,
+                    'globalcontext.json'), 'rb')),
+            'update_date': datetime.datetime.fromtimestamp(
+                    os.path.getmtime(os.path.join(project.path, BUILDDIR,
+                    'last_build'))),
         }
