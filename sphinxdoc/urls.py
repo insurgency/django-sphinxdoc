@@ -27,7 +27,8 @@ urlpatterns = patterns('sphinxdoc.views',
         name='doc-search',
     ),
     url(
-        r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/(?P<path>.*)$',
+        r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/' + \
+                r'(?P<path>.+)/$',
         'sphinx_serve',
     ),
     url(

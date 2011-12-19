@@ -118,6 +118,11 @@ class ProjectSearchView(SearchView):
                 searchqueryset=self.searchqueryset, load_all=self.load_all)
 
     def extra_context(self):
+        """
+        Adds the project, the contents of ``globalcontext.json`` and the
+        update date as extra context.
+
+        """
         project = Project.objects.get(slug=self.slug)
         return {
             'project': project,
