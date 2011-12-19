@@ -14,7 +14,7 @@ comments and add RSS feeds.
 Requirements
 ------------
 
-This app is tested with Django 1.1 and 1.2. You also need `Sphinx
+This app is tested with Django >= 1.1. You also need `Sphinx
 <http://sphinx.pocoo.org/>`_ >= 1.0 and `Haystack
 <http://haystacksearch.org/>`_.
 
@@ -22,21 +22,18 @@ This app is tested with Django 1.1 and 1.2. You also need `Sphinx
 Installation
 ------------
 
-You can either install this app with `PIP <http://pypi.python.org/pypi/pip>`_ 
-(or ``easy_install``)::
+You can either install this app with `PIP <http://pypi.python.org/pypi/pip>`_::
 
     $ pip install django-sphinxdoc
-    $ # or:
-    $ easy_install django-sphinxdoc
 
 or download and install it manually::
 
     $ cd where/you/put/django-sphinxdoc/
     $ python setup.py install
-    
-Use `this URL <http://bitbucket.org/scherfke/django-sphinxdoc/>`_ for cloning if
-you want to install this app in development mode.
-    
+
+Use `this URL <http://bitbucket.org/scherfke/django-sphinxdoc/>`_ for cloning
+if you want to install this app in development mode.
+
 
 Usage
 -----
