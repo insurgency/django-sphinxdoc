@@ -49,15 +49,21 @@ def documentation(request, slug, path):
         'sphinxdoc/documentation.html',
     )
 
+    try:
+        env = json.load(open(os.path.join(project.path, BUILDDIR, 'globalcontext.json'), 'rb'))
+    except IOError:
+        env = None
+
+    try:
+        update_date = datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(project.path, BUILDDIR, 'last_build')))
+    except OSError:
+        update_date = datetime.datetime.fromtimestamp(0)
+
     data = {
         'project': project,
         'doc': json.loads(doc.content),
-        'env': json.load(open(
-                os.path.join(project.path, BUILDDIR,
-                'globalcontext.json'), 'rb')),
-        'update_date': datetime.datetime.fromtimestamp(
-                os.path.getmtime(os.path.join(project.path, BUILDDIR,
-                'last_build'))),
+        'env': env,
+        'update_date': update_date,
         'search': urlresolvers.reverse('doc-search', kwargs={'slug': slug}),
     }
 
@@ -124,12 +130,19 @@ class ProjectSearchView(SearchView):
 
         """
         project = Project.objects.get(slug=self.slug)
+
+        try:
+            env = json.load(open(os.path.join(project.path, BUILDDIR, 'globalcontext.json'), 'rb'))
+        except IOError:
+            env = None
+
+        try:
+            update_date = datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(project.path, BUILDDIR, 'last_build')))
+        except OSError:
+            update_date = datetime.datetime.fromtimestamp(0)
+
         return {
             'project': project,
-            'env': json.load(open(
-                    os.path.join(project.path, BUILDDIR,
-                    'globalcontext.json'), 'rb')),
-            'update_date': datetime.datetime.fromtimestamp(
-                    os.path.getmtime(os.path.join(project.path, BUILDDIR,
-                    'last_build'))),
+            'env': env,
+            'update_date': update_date,
         }
