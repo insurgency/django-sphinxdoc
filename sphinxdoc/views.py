@@ -52,10 +52,14 @@ def documentation(request, slug, path):
     try:
         env = json.load(open(os.path.join(project.path, BUILDDIR, 'globalcontext.json'), 'rb'))
     except IOError:
+        # It is possible that file does not exist anymore (for example, because make clean to
+        # prepare for running make again), we do not want to display an error to the user in this case
         env = None
 
     try:
         update_date = datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(project.path, BUILDDIR, 'last_build')))
+        # It is possible that file does not exist anymore (for example, because make clean to
+        # prepare for running make again), we do not want to display an error to the user in this case
     except OSError:
         update_date = datetime.datetime.fromtimestamp(0)
 
@@ -134,11 +138,15 @@ class ProjectSearchView(SearchView):
         try:
             env = json.load(open(os.path.join(project.path, BUILDDIR, 'globalcontext.json'), 'rb'))
         except IOError:
+            # It is possible that file does not exist anymore (for example, because make clean to
+            # prepare for running make again), we do not want to display an error to the user in this case
             env = None
 
         try:
             update_date = datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(project.path, BUILDDIR, 'last_build')))
         except OSError:
+            # It is possible that file does not exist anymore (for example, because make clean to
+            # prepare for running make again), we do not want to display an error to the user in this case
             update_date = datetime.datetime.fromtimestamp(0)
 
         return {
