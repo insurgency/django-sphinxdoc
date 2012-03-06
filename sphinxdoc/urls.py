@@ -26,9 +26,12 @@ urlpatterns = patterns('sphinxdoc.views',
         ProjectSearchView(),
         name='doc-search',
     ),
+    # These URLs have to be without the / at the end so that relative links in
+    # static HTML files work correctly and that browsers know how to name files
+    # for download
     url(
         r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/' + \
-                r'(?P<path>.+)/$',
+                r'(?P<path>.+)$',
         'sphinx_serve',
     ),
     url(
