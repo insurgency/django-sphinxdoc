@@ -6,7 +6,7 @@ reload(sys).setdefaultencoding('Utf-8')
 
 setup(
     name='django-sphinxdoc',
-    version='1.0',
+    version='1.1',
     author='Stefan Scherfke',
     author_email='stefan at sofa-rockers.org',
     description='Easily integrate Sphinx documentation into your website.',

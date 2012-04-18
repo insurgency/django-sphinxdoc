@@ -1,2 +1,4 @@
 The primary author of django-sphinxdoc is Stefan Scherfke, who may be found
 online at http://stefan.sofa-rockers.org/.
+
+`Mitar <https://bitbucket.org/mitar>`_ contributed to the project since v1.0.

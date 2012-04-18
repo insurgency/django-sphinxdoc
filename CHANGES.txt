@@ -3,10 +3,18 @@ Changelog for django-sphinxdoc
 ==============================
 
 
-v1.0.1 – :
---------------------
+v1.1 – 2012-04-19:
+------------------
 
-- [FIX] Fixed a bug with the updatedoc command ``~`` in paths.
+- [NEW] Support static and download files.
+- [NEW] Additional context to search view so that project information is
+  available in the template.
+- [CHANGE] Updated some `templates
+  <https://bitbucket.org/ssc/django-sphinxdoc/changeset/e876d5e72b34>`_
+- [FIX] Fixed a bug with the updatedoc command and ``~`` in paths.
+- [FIX] Include all module index files.
+- [FIX] Improved indexing behaviour
+- [FIX] Improved behaviour when building the docs.
 
 
 v1.0.0 – 2010-09-11:
