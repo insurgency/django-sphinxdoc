@@ -3,12 +3,12 @@
 Search indexes for Haystack.
 
 """
-from haystack import indexes, site
+from haystack import indexes
 
 from sphinxdoc.models import Document
 
 
-class DocumentIndex(indexes.SearchIndex):
+class DocumentIndex(indexes.SearchIndex, indexes.Indexable):
     """
     Index for :class:`~sphinxdoc.models.Document`.
 
@@ -17,9 +17,9 @@ class DocumentIndex(indexes.SearchIndex):
     title = indexes.CharField(model_attr='title')
     project = indexes.IntegerField(model_attr='project_id')
 
-    def get_queryset(self):
+    def get_model(self):
+        return Document
+
+    def index_queryset(self, using=None):
         """Used when the entire index for model is updated."""
-        return Document.objects.all()
-
-
-site.register(Document, DocumentIndex)
+        return self.get_model().objects.all()
