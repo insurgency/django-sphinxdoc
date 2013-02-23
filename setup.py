@@ -20,7 +20,10 @@ setup(
         'sphinxdoc.management.commands',
     ],
     package_data={
-        'sphinxdoc': ['templates/sphinxdoc/*'],
+        'sphinxdoc': [
+            'templates/sphinxdoc/*',
+            'templates/search/indexes/sphinxdoc/*',
+        ],
     },
     classifiers=[
         'Development Status :: 5 - Production/Stable',
