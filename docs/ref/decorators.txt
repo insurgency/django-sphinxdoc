@@ -1,0 +1,9 @@
+.. _ref-admin:
+
+Decorators
+==========
+
+.. automodule:: sphinxdoc.decorators
+
+    .. autofunction:: user_allowed_for_project(view)
+

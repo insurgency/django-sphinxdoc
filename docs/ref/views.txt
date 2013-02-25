@@ -5,6 +5,9 @@ Views
 
 .. automodule:: sphinxdoc.views
 
+    .. autoclass:: OverviewList
+        :members:
+
     .. autoclass:: ProjectSearchView
         :members:
     

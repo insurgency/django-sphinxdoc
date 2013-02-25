@@ -75,6 +75,17 @@ Slug:
 Path:
     A file system path to the Sphinx project (where Sphinx’ ``conf.py`` is
     located), e.g.: ``/path/to/app/docs``
+
+
+Protected Projects
+^^^^^^^^^^^^^^^^^^
+
+You can require users to log in to view the documented project by adding the
+project slug as an entry in the :data:`SPHINXDOC_PROTECTED_PROJECTS` setting. ::
+
+    SPHINXDOC_PROTECTED_PROJECTS = [
+        'project-slug',
+    ]
     
 
 Build & import the documentation

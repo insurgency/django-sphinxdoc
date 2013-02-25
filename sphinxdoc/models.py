@@ -3,6 +3,7 @@
 Models for django-sphinxdoc.
 
 """
+from django.conf import settings
 from django.db import models
 
 from sphinxdoc.validators import validate_isdir
@@ -23,6 +24,14 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def is_allowed(self, user):
+        if user.is_authenticated():
+            return True
+        protected = getattr(settings, 'SPHINXDOC_PROTECTED_PROJECTS', [])
+        if self.slug in protected:
+            return False
+        return True
 
     @models.permalink
     def get_absolute_url(self):
