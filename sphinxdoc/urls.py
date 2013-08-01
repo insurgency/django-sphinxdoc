@@ -4,7 +4,7 @@ URL conf for django-sphinxdoc.
 
 """
 from django.conf.urls.defaults import patterns, url
-from django.views.generic.list import ListView
+from django.views.generic import ListView
 
 from sphinxdoc import models
 from sphinxdoc.views import ProjectSearchView
@@ -13,7 +13,8 @@ from sphinxdoc.views import ProjectSearchView
 urlpatterns = patterns('sphinxdoc.views',
     url(
         r'^$',
-        ListView.as_view(queryset=models.Project.objects.all().order_by('name'))
+        ListView.as_view(
+            queryset=models.Project.objects.all().order_by('name')),
     ),
     url(
         r'^(?P<slug>[\w-]+)/search/$',
@@ -24,8 +25,8 @@ urlpatterns = patterns('sphinxdoc.views',
     # static HTML files work correctly and that browsers know how to name files
     # for download
     url(
-        r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/' + \
-                r'(?P<path>.+)$',
+        r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/'
+        r'(?P<path>.+)$',
         'sphinx_serve',
     ),
     url(

@@ -1,0 +1,105 @@
+# Basque translation of django-sphinxdoc
+# Copyright (C) 2013
+# This file is distributed under the same license as the django-sphinxdoc package.
+# Ales Zabala Alava (Shagi) <shagi@gisa-elkartea.org>, 2013.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-07 13:57+0100\n"
+"PO-Revision-Date: 2013-02-28 08:52+0100\n"
+"Last-Translator: Ales Zabala Alava (Shagi) <shagi@gisa-elkartea.org>\n"
+"Language-Team: Basque\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:21
+msgid "Used in the URL for the project. Must be unique."
+msgstr "Proiektuaren URLan erabilita. Bakarra izan behar du."
+
+#: models.py:23
+msgid "Directory that contains Sphinx’ <tt>conf.py</tt>."
+msgstr "Sphinx-eko <tt>conf.py</tt> fitxategia duen direktorioa."
+
+#: models.py:26
+msgid "project"
+msgstr "proiektua"
+
+#: models.py:27
+msgid "projects"
+msgstr "proiektuak"
+
+#: models.py:51
+msgid "document"
+msgstr "dokumenua"
+
+#: models.py:52
+msgid "documents"
+msgstr "dokumentuak"
+
+#: templates/sphinxdoc/documentation.html:10
+#, python-format
+msgid "%(project_name)s documentation"
+msgstr "%(project_name)s dokumentazioa"
+
+#: templates/sphinxdoc/documentation.html:19
+#: templates/sphinxdoc/documentation.html:38
+msgid "Prev:"
+msgstr "Aurrekoa:"
+
+#: templates/sphinxdoc/documentation.html:23
+#: templates/sphinxdoc/documentation.html:42
+msgid "Next:"
+msgstr "Hurrengoa:"
+
+#: templates/sphinxdoc/documentation.html:46
+#, python-format
+msgid "%(project.name)s documentation"
+msgstr "%(project.name)s dokumentazioa"
+
+#: templates/sphinxdoc/documentation.html:53
+msgid "Last update:"
+msgstr "Azken eguneraketa:"
+
+#: templates/sphinxdoc/documentation.html:61
+msgid "Contents"
+msgstr "Edukiak"
+
+#: templates/sphinxdoc/documentation.html:66
+#: templates/sphinxdoc/documentation.html:68
+msgid "Search"
+msgstr "Bilatu"
+
+#: templates/sphinxdoc/genindex.html:5
+msgid "General Index"
+msgstr "Indize orokorra"
+
+#: templates/sphinxdoc/genindex.html:30
+msgid "[Link]"
+msgstr "[Esteka}"
+
+#: templates/sphinxdoc/modindex.html:5
+msgid "Module Index"
+msgstr "Moduluen indizea"
+
+#: templates/sphinxdoc/project_list.html:4
+#: templates/sphinxdoc/project_list.html:8
+msgid "Documentation Overview"
+msgstr "Dokumentazioaren gainbegirada"
+
+#: templates/sphinxdoc/search.html:5
+msgid "Search results:"
+msgstr "Bilaketa emaitzak:"
+
+#: templates/sphinxdoc/search.html:14
+msgid "No results found."
+msgstr "Ez da emaitzarik topatu."
+
+#: templates/sphinxdoc/search.html:18
+msgid "No search query entered."
+msgstr "Ez da bilaketa galderarik sartu."

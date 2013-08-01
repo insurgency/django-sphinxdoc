@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}{{ block.super }} » Documentation Overview{% endblock %}
+{% block title %}{{ block.super }} » {% trans "Documentation Overview" %}{% endblock %}
 
 {% block content %}
 <div>
-    <h2 class="pagetitle">Documentation Overview</h2>
+    <h2 class="pagetitle">{% trans "Documentation Overview" %}</h2>
     <ul>
     {% for project in project_list %}
         <li><a href="{{ project.get_absolute_url }}">{{ project.name }}</a></li>
