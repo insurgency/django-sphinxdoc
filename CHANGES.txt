@@ -2,6 +2,14 @@
 Changelog for django-sphinxdoc
 ==============================
 
+v1.2 – 2013-08-xx:
+------------------
+
+- [NEW] I18n and l10n for spanish and basque, by Ales Zabala Alava
+- [CHANGE] Use class-based views, by Josiah Klassen
+- [CHANGE] Migration to Haystack 2, by Andres Riancho
+– [FIX] Inclusion of search index template in package, by mikehsantz
+
 
 v1.1 – 2012-04-19:
 ------------------
