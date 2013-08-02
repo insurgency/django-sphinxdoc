@@ -15,36 +15,32 @@ documentation.
 Installation
 ------------
 
-You can either install this app with `PIP <http://pypi.python.org/pypi/pip>`_ 
-(or ``easy_install``):
+Just use `PIP <http://pypi.python.org/pypi/pip>`_:
 
 .. sourcecode:: bash
 
     $ pip install django-sphinxdoc
-    $ # or:
-    $ easy_install django-sphinxdoc
 
-or download and install it manually:
+If you want the lates development version, isntall it from Bitbucket:
 
 .. sourcecode:: bash
 
-    $ cd where/you/put/django-sphinxdoc/
-    $ python setup.py install
-    
-Use `this URL <http://bitbucket.org/scherfke/django-sphinxdoc/>`_ for cloning if
-you want to install this app in development mode.
+    $ pip install https://ssc@bitbucket.org/ssc/django-sphinxdoc
+    $ # or
+    $ hg clone ssh://hg@bitbucket.org/ssc/django-sphinxdoc
+    $ pip install -e django-sphinxdoc
 
 
 Setup
 -----
 
 Add ``'sphinxdoc'`` to your ``INSTALLED_APPS`` in your ``settings.py`` and add
-the following line to your project’s ``urls.py``:
-   
+the following line to your project's ``urls.py``:
+
 .. sourcecode:: python
 
     (r'^docs/', include('sphinxdoc.urls')),
-    
+
 Install the required database tables with:
 
 .. sourcecode:: bash
@@ -54,10 +50,10 @@ Install the required database tables with:
 In order get Haystack working with django-sphinxdoc, you only need to executes
 the steps under `Configuration
 <http://docs.haystacksearch.org/dev/tutorial.html#configuration>`_ in the
-Haystack tutorial (if not already done). You don’t need to create any search indexes, views or
-templates yourself.
-    
-    
+Haystack tutorial (if not already done). You don’t need to create any search
+indexes, views or templates yourself.
+
+
 Add a project
 -------------
 
@@ -67,15 +63,15 @@ fields:
 
 Name:
     The name of the documented project
-    
+
 Slug:
     A sluggified version of the project name; will be generated
     automatically
 
 Path:
     A file system path to the Sphinx project (where Sphinx’ ``conf.py`` is
-    located), e.g.: ``/path/to/app/docs``
-    
+    located), e.g.: ``/path/to/project/docs``
+
 
 Build & import the documentation
 --------------------------------
