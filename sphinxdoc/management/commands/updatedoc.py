@@ -1,4 +1,3 @@
-# encoding: utf-8
 """
 Management command for updading the documentation of one or more projects.
 
@@ -26,9 +25,8 @@ SPECIAL_TITLES = {
 
 
 class Command(BaseCommand):
-    """
-    Update (and optionally build) the *Sphinx* documentation for one ore more
-    projects.
+    """Update (and optionally build) the *Sphinx* documentation for one ore
+    more projects.
 
     You need to pass the slug of at least one project. If you pass the optional
     parameter ``-b``, the command ``sphinx-build`` will be run for each project
@@ -41,12 +39,14 @@ class Command(BaseCommand):
     help = ('Updates the documentation and the search index for the specified '
             'projects.')
     option_list = BaseCommand.option_list + (
-        optparse.make_option('-b', '--build',
+        optparse.make_option(
+            '-b', '--build',
             action='store_true',
             dest='build',
             default=False,
             help='Run "sphinx-build" for each project before updating it.'),
-        optparse.make_option('--virtualenv',
+        optparse.make_option(
+            '--virtualenv',
             dest='virtualenv',
             default='',
             help='Use this virtualenv to build project docs.',
@@ -54,8 +54,7 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
-        """
-        Updates (and optionally builds) the documenation for all projects in
+        """Updates (and optionally builds) the documenation for all projects in
         ``args``.
 
         """
@@ -84,9 +83,8 @@ class Command(BaseCommand):
             print 'Done'
 
     def build(self, project, virtualenv=''):
-        """
-        Runs ``sphinx-build`` for ``project``. You can also specify a path to
-        the bin-directory of a ``virtualenv``, if your project requires it.
+        """Runs ``sphinx-build`` for ``project``. You can also specify a path
+        to the bin-directory of a ``virtualenv``, if your project requires it.
 
         """
         cmd = 'sphinx-build'
@@ -94,6 +92,7 @@ class Command(BaseCommand):
             cmd = os.path.expanduser(os.path.join(virtualenv, cmd))
         cmd = [
             cmd,
+            '-n',
             '-b',
             'json',
             '-d',
@@ -109,9 +108,9 @@ class Command(BaseCommand):
         Document.objects.filter(project=project).delete()
 
     def import_files(self, project):
-        """
-        Creates a :class:`~sphinxdoc.models.Document` instance for each JSON
+        """Creates a :class:`~sphinxdoc.models.Document` instance for each JSON
         file of ``project``.
+
         """
         path = os.path.join(project.path, BUILDDIR, 'json')
         for dirpath, dirnames, filenames in os.walk(path):
@@ -142,5 +141,5 @@ class Command(BaseCommand):
                 d.save()
 
     def update_haystack(self):
-        """Updates Haystack’s search index."""
+        """Updates Haystack's search index."""
         call_command('rebuild_index', interactive=False)

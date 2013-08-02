@@ -1,4 +1,3 @@
-# encoding: utf-8
 """
 Admin interface for the sphinxdoc app.
 
@@ -15,10 +14,9 @@ class ProjectAdmin(admin.ModelAdmin):
 
 
 class DocumentAdmin(admin.ModelAdmin):
-    """
-    Admin interface for :class:`~sphinxdoc.models.Document`.
+    """Admin interface for :class:`~sphinxdoc.models.Document`.
 
-    Normally, you shouldn’t need this, since you create new documents via
+    Normally, you shouldn't need this, since you create new documents via
     the management command.
 
     """

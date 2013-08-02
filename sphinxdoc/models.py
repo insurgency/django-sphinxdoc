@@ -10,17 +10,18 @@ from sphinxdoc.validators import validate_isdir
 
 
 class Project(models.Model):
-    """
-    Represents a Sphinx project. Each ``Project`` has a name, a slug and a path
-    to the root directory of a Sphinx project (where Sphinx’ ``conf.py``) is
-    located).
+    """Represents a Sphinx project. Each ``Project`` has a name, a slug and
+    a path to the root directory of a Sphinx project (where Sphinx’
+    ``conf.py``) is located).
 
     """
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True,
-            help_text=_(u'Used in the URL for the project. Must be unique.'))
+                            help_text=_(u'Used in the URL for the project. '
+                                        'Must be unique.'))
     path = models.CharField(max_length=255, validators=[validate_isdir],
-            help_text=_(u'Directory that contains Sphinx’ <tt>conf.py</tt>.'))
+                            help_text=_(u'Directory that contains Sphinx’ '
+                                        '<tt>conf.py</tt>.'))
 
     class Meta:
         verbose_name = _('project')
@@ -35,8 +36,7 @@ class Project(models.Model):
 
 
 class Document(models.Model):
-    """
-    Represents a JSON encoded Sphinx document. The attributes ``title`` and
+    """Represents a JSON encoded Sphinx document. The attributes ``title`` and
     ``body`` dubicate the corresponding keys in ``content`` and are used for
     the Haystack search.
 

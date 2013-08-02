@@ -1,4 +1,3 @@
-# encoding: utf-8
 """
 URL conf for django-sphinxdoc.
 
@@ -25,8 +24,8 @@ urlpatterns = patterns('sphinxdoc.views',
     # static HTML files work correctly and that browsers know how to name files
     # for download
     url(
-        r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/'
-        r'(?P<path>.+)$',
+        (r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/'
+         r'(?P<path>.+)$'),
         'sphinx_serve',
     ),
     url(
