@@ -14,8 +14,7 @@ comments and add RSS feeds.
 Requirements
 ------------
 
-This app requires Django >= 1.4, `Sphinx <http://sphinx.pocoo.org/>`_ >= 1.0
-and `Haystack <http://haystacksearch.org/>`_ >= 2.1.0.
+This app requires Django >= 1.4.2, Sphinx >= 1.0 and Haystack >= 2.1.
 
 
 Installation

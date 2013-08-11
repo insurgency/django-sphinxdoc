@@ -13,7 +13,7 @@ setup(
     url='http://stefan.sofa-rockers.org/django-sphinxdoc/',
     license='MIT',
     install_requires=[
-        'Django>=1.4',
+        'Django>=1.4.2',
         'Sphinx>=1.0',
         'django-haystack>=2.1',
     ],
