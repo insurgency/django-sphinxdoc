@@ -39,5 +39,4 @@ If you want the lates development version, isntall it from Bitbucket:
 Usage
 -----
 
-The Documentation can be found in the *docs/* directory or
-`online <http://stefan.sofa-rockers.org/docs/django-sphinxdoc/>`_.
+The Documentation can be found in the *docs/* directory.
