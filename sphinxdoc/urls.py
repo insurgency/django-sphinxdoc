@@ -14,6 +14,7 @@ urlpatterns = patterns('sphinxdoc.views',
         r'^$',
         ListView.as_view(
             queryset=models.Project.objects.all().order_by('name')),
+        name='docs-list',
     ),
     url(
         r'^(?P<slug>[\w-]+)/search/$',
