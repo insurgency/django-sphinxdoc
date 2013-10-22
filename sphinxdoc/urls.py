@@ -41,6 +41,12 @@ urlpatterns = patterns('sphinxdoc.views',
         name='doc-index',
     ),
     url(
+        r'^(?P<slug>[\w-]+)/genindex/$',
+        'documentation',
+        {'path': 'genindex'},
+        name='doc-genindex',
+    ),
+    url(
         r'^(?P<slug>[\w-]+)/(?P<path>.+)/$',
         'documentation',
         name='doc-detail',
