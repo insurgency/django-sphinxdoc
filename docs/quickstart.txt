@@ -54,6 +54,17 @@ Haystack tutorial (if not already done). You don’t need to create any search
 indexes, views or templates yourself.
 
 
+Optional Settings
+^^^^^^^^^^^^^^^^^
+Optional sphinxdoc settings in your ``settings.py``.
+
+``SPHINXDOC_CACHE_MINUTES``:
+    Sets the length of the cache duration for sphinxdoc
+    pages in minutes. If not set, defaults to 5 minutes. For caching to be
+    active, you must enable Django's
+    `cache framework <https://docs.djangoproject.com/en/dev/topics/cache/>`_
+
+
 Add a project
 -------------
 
