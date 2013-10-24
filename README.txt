@@ -2,11 +2,6 @@
 django-sphinxdoc – Embed your Sphinx docs into your Django site
 ===============================================================
 
-.. image:: https://pypip.in/v/django-sphinxdoc/badge.png
-        :target: https://crate.io/packages/django-sphinxdoc
-.. image:: https://pypip.in/d/django-sphinxdoc/badge.png
-        :target: https://crate.io/packages/django-sphinxdoc
-
 This Django application allows you to integrate any `Sphinx
 <http://sphinx.pocoo.org/>`_ documentation directly into your Django powered
 website instead of just serving the static files.
