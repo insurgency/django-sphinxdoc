@@ -6,6 +6,7 @@ import datetime
 import json
 import os.path
 
+from django.conf import settings
 from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import get_object_or_404, render_to_response
@@ -19,7 +20,7 @@ from sphinxdoc.models import Project, Document
 
 
 BUILDDIR = os.path.join('_build', 'json')
-CACHE_MINUTES = 5
+CACHE_MINUTES = getattr(settings, 'SPHINXDOC_CACHE_MINUTES', 5)
 
 
 @cache_page(60 * CACHE_MINUTES)
