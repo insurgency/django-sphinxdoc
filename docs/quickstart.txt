@@ -65,6 +65,11 @@ Optional sphinxdoc settings in your ``settings.py``.
     active, you must enable Django's
     `cache framework <https://docs.djangoproject.com/en/dev/topics/cache/>`_
 
+``SPHINXDOC_BUILD_DIR``:
+    Sets the name of target directory (within the project root) for the
+    sphinx builder and the sphinxdoc updater. If not set, defaults to
+    *_build*.
+
 
 Add a project
 -------------

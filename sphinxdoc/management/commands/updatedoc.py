@@ -8,13 +8,14 @@ import os
 import os.path
 import subprocess
 
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
 from sphinxdoc.models import Project, Document
 
 
-BUILDDIR = '_build'
+BUILDDIR = getattr(settings, 'SPHINXDOC_BUILD_DIR', '_build')
 EXTENSION = '.fjson'
 SPECIAL_TITLES = {
     'genindex': 'General Index',
