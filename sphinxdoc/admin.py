@@ -20,7 +20,8 @@ class DocumentAdmin(admin.ModelAdmin):
     the management command.
 
     """
-    pass
+    list_display = ('path', 'title', 'project',)
+    list_filter = ('project', )
 
 
 admin.site.register(Project, ProjectAdmin)
