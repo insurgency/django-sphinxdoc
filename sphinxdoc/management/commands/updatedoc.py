@@ -51,37 +51,59 @@ class Command(BaseCommand):
             dest='virtualenv',
             default='',
             help='Use this virtualenv to build project docs.',
-        )
+        ),
+        optparse.make_option(
+            '-a', '--all',
+            action='store_true',
+            dest='update_all',
+            default=False,
+            help='Update all projects.',
+        ),
     )
 
     def handle(self, *args, **options):
-        """Updates (and optionally builds) the documenation for all projects in
-        ``args``.
+        """Updates (and optionally builds) the documenation for all projects,
+        either as a list specifed in ``args``, or get all from database.
 
+        """
+        update_all = options['update_all']
+
+        if update_all:
+            for project in Project.objects.all():
+                self.update_project(project, options)
+        elif args:
+            for slug in args:
+                try:
+                    project = Project.objects.get(slug=slug)
+                except Project.DoesNotExist:
+                    raise CommandError('Project "%s" does not exist' % slug)
+                else:
+                    self.update_project(project, options)
+        else:
+            raise CommandError('No project(s) specified.')
+
+    def update_project(self, project, options):
+        """
+        Updates (and optionally builds) the documenation for a given project.
+        
         """
         build = options['build']
         virtualenv = options['virtualenv']
+        
+        if build:
+            print 'Running "sphinx--build" for "%s" ...' % project.slug
+            self.build(project, virtualenv)
 
-        for slug in args:
-            try:
-                project = Project.objects.get(slug=slug)
-            except Project.DoesNotExist:
-                raise CommandError('Project "%s" does not exist' % slug)
+        print 'Deleting old entries from database ...'
+        self.delete_documents(project)
+        
+        print 'Importing JSON files for "%s" ...' % project.slug
+        self.import_files(project)
 
-            if build:
-                print 'Running "sphinx--build" for "%s" ...' % slug
-                self.build(project, virtualenv)
+        print 'Updating search index for "%s" ...' % project.slug
+        self.update_haystack()
 
-            print 'Deleting old entries from database ...'
-            self.delete_documents(project)
-
-            print 'Importing JSON files for "%s" ...' % slug
-            self.import_files(project)
-
-            print 'Updating search index for "%s" ...' % slug
-            self.update_haystack()
-
-            print 'Done'
+        print 'Done'
 
     def build(self, project, virtualenv=''):
         """Runs ``sphinx-build`` for ``project``. You can also specify a path
