@@ -146,9 +146,13 @@ class Command(BaseCommand):
 
                 # Some files have no title or body attribute
                 doc = json.load(open(filepath, 'rb'))
-                if 'title' not in doc:
+                if 'title' not in doc and 'indextitle' not in doc:
                     page_name = os.path.basename(relpath)
                     doc['title'] = SPECIAL_TITLES[page_name]
+                # generated domain indexes have an indextitle instead of a title
+                if 'title' not in doc and 'indextitle' in doc:
+                    doc['title'] = doc['indextitle']
+
                 if 'body' not in doc:
                     doc['body'] = ''
 
