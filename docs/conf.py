@@ -14,6 +14,10 @@
 
 import sys, os
 
+# nned to set Django default settings for autodoc module loading
+from django.conf import settings as django_settings
+django_settings.configure(HAYSTACK_CONNECTIONS={'default':{}})
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
