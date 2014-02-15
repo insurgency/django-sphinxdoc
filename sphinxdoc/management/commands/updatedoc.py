@@ -1,4 +1,3 @@
-# encoding: utf-8
 """
 Management command for updading the documentation of one or more projects.
 
@@ -9,13 +8,14 @@ import os
 import os.path
 import subprocess
 
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 
 from sphinxdoc.models import Project, Document
 
 
-BUILDDIR = '_build'
+BUILDDIR = getattr(settings, 'SPHINXDOC_BUILD_DIR', '_build')
 EXTENSION = '.fjson'
 SPECIAL_TITLES = {
     'genindex': 'General Index',
@@ -26,9 +26,8 @@ SPECIAL_TITLES = {
 
 
 class Command(BaseCommand):
-    """
-    Update (and optionally build) the *Sphinx* documentation for one ore more
-    projects.
+    """Update (and optionally build) the *Sphinx* documentation for one ore
+    more projects.
 
     You need to pass the slug of at least one project. If you pass the optional
     parameter ``-b``, the command ``sphinx-build`` will be run for each project
@@ -41,52 +40,74 @@ class Command(BaseCommand):
     help = ('Updates the documentation and the search index for the specified '
             'projects.')
     option_list = BaseCommand.option_list + (
-        optparse.make_option('-b', '--build',
+        optparse.make_option(
+            '-b', '--build',
             action='store_true',
             dest='build',
             default=False,
             help='Run "sphinx-build" for each project before updating it.'),
-        optparse.make_option('--virtualenv',
+        optparse.make_option(
+            '--virtualenv',
             dest='virtualenv',
             default='',
             help='Use this virtualenv to build project docs.',
-        )
+        ),
+        optparse.make_option(
+            '-a', '--all',
+            action='store_true',
+            dest='update_all',
+            default=False,
+            help='Update all projects.',
+        ),
     )
 
     def handle(self, *args, **options):
-        """
-        Updates (and optionally builds) the documenation for all projects in
-        ``args``.
+        """Updates (and optionally builds) the documenation for all projects,
+        either as a list specifed in ``args``, or get all from database.
 
+        """
+        update_all = options['update_all']
+
+        if update_all:
+            for project in Project.objects.all():
+                self.update_project(project, options)
+        elif args:
+            for slug in args:
+                try:
+                    project = Project.objects.get(slug=slug)
+                except Project.DoesNotExist:
+                    raise CommandError('Project "%s" does not exist' % slug)
+                else:
+                    self.update_project(project, options)
+        else:
+            raise CommandError('No project(s) specified.')
+
+    def update_project(self, project, options):
+        """
+        Updates (and optionally builds) the documenation for a given project.
+        
         """
         build = options['build']
         virtualenv = options['virtualenv']
+        
+        if build:
+            print 'Running "sphinx--build" for "%s" ...' % project.slug
+            self.build(project, virtualenv)
 
-        for slug in args:
-            try:
-                project = Project.objects.get(slug=slug)
-            except Project.DoesNotExist:
-                raise CommandError('Project "%s" does not exist' % slug)
+        print 'Deleting old entries from database ...'
+        self.delete_documents(project)
+        
+        print 'Importing JSON files for "%s" ...' % project.slug
+        self.import_files(project)
 
-            if build:
-                print 'Running "sphinx--build" for "%s" ...' % slug
-                self.build(project, virtualenv)
+        print 'Updating search index for "%s" ...' % project.slug
+        self.update_haystack()
 
-            print 'Deleting old entries from database ...'
-            self.delete_documents(project)
-
-            print 'Importing JSON files for "%s" ...' % slug
-            self.import_files(project)
-
-            print 'Updating search index for "%s" ...' % slug
-            self.update_haystack()
-
-            print 'Done'
+        print 'Done'
 
     def build(self, project, virtualenv=''):
-        """
-        Runs ``sphinx-build`` for ``project``. You can also specify a path to
-        the bin-directory of a ``virtualenv``, if your project requires it.
+        """Runs ``sphinx-build`` for ``project``. You can also specify a path
+        to the bin-directory of a ``virtualenv``, if your project requires it.
 
         """
         cmd = 'sphinx-build'
@@ -94,6 +115,7 @@ class Command(BaseCommand):
             cmd = os.path.expanduser(os.path.join(virtualenv, cmd))
         cmd = [
             cmd,
+            '-n',
             '-b',
             'json',
             '-d',
@@ -109,9 +131,9 @@ class Command(BaseCommand):
         Document.objects.filter(project=project).delete()
 
     def import_files(self, project):
-        """
-        Creates a :class:`~sphinxdoc.models.Document` instance for each JSON
+        """Creates a :class:`~sphinxdoc.models.Document` instance for each JSON
         file of ``project``.
+
         """
         path = os.path.join(project.path, BUILDDIR, 'json')
         for dirpath, dirnames, filenames in os.walk(path):
@@ -124,9 +146,13 @@ class Command(BaseCommand):
 
                 # Some files have no title or body attribute
                 doc = json.load(open(filepath, 'rb'))
-                if 'title' not in doc:
+                if 'title' not in doc and 'indextitle' not in doc:
                     page_name = os.path.basename(relpath)
                     doc['title'] = SPECIAL_TITLES[page_name]
+                # generated domain indexes have an indextitle instead of a title
+                if 'title' not in doc and 'indextitle' in doc:
+                    doc['title'] = doc['indextitle']
+
                 if 'body' not in doc:
                     doc['body'] = ''
 
@@ -142,5 +168,5 @@ class Command(BaseCommand):
                 d.save()
 
     def update_haystack(self):
-        """Updates Haystack’s search index."""
+        """Updates Haystack's search index."""
         call_command('rebuild_index', interactive=False)

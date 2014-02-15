@@ -1,6 +1,6 @@
-
-Django and Sphinx documentation
-===============================
+===============================================================
+django-sphinxdoc – Embed your Sphinx docs into your Django site
+===============================================================
 
 This Django application allows you to integrate any `Sphinx
 <http://sphinx.pocoo.org/>`_ documentation directly into your Django powered
@@ -14,29 +14,29 @@ comments and add RSS feeds.
 Requirements
 ------------
 
-This app is tested with Django >= 1.1. You also need `Sphinx
-<http://sphinx.pocoo.org/>`_ >= 1.0 and `Haystack
-<http://haystacksearch.org/>`_.
+This app requires Django >= 1.4.2, Sphinx >= 1.0 and Haystack >= 2.1.
 
 
 Installation
 ------------
 
-You can either install this app with `PIP <http://pypi.python.org/pypi/pip>`_::
+Just use `PIP <http://pypi.python.org/pypi/pip>`_:
+
+.. sourcecode:: bash
 
     $ pip install django-sphinxdoc
 
-or download and install it manually::
+If you want the lates development version, isntall it from Bitbucket:
 
-    $ cd where/you/put/django-sphinxdoc/
-    $ python setup.py install
+.. sourcecode:: bash
 
-Use `this URL <http://bitbucket.org/scherfke/django-sphinxdoc/>`_ for cloning
-if you want to install this app in development mode.
+    $ pip install https://ssc@bitbucket.org/ssc/django-sphinxdoc
+    $ # or
+    $ hg clone ssh://hg@bitbucket.org/ssc/django-sphinxdoc
+    $ pip install -e django-sphinxdoc
 
 
 Usage
 -----
 
-The Documentation can be found in the *docs/* directory or
-`online <http://stefan.sofa-rockers.org/docs/django-sphinxdoc/>`_.
+The Documentation can be found in the *docs/* directory.

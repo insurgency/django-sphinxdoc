@@ -1,38 +1,35 @@
-#! /usr/bin/env python
-from distutils.core import setup
-import sys
-reload(sys).setdefaultencoding('Utf-8')
+from setuptools import setup, find_packages
 
 
 setup(
     name='django-sphinxdoc',
-    version='1.1',
+    version='1.2.1',
     author='Stefan Scherfke',
     author_email='stefan at sofa-rockers.org',
     description='Easily integrate Sphinx documentation into your website.',
-    long_description=open('README.txt').read(),
+    long_description=(open('README.txt').read() + '\n\n' +
+                      open('CHANGES.txt').read() + '\n\n' +
+                      open('AUTHORS.txt').read()),
     url='http://stefan.sofa-rockers.org/django-sphinxdoc/',
-    download_url='http://bitbucket.org/scherfke/django-sphinxdoc/downloads/',
-    license='BSD',
-    packages=[
-        'sphinxdoc',
-        'sphinxdoc.management',
-        'sphinxdoc.management.commands',
+    license='MIT',
+    install_requires=[
+        'Django>=1.4.2',
+        'Sphinx>=1.0',
+        'django-haystack>=2.1',
     ],
-    package_data={
-        'sphinxdoc': [
-            'templates/sphinxdoc/*',
-            'templates/search/indexes/sphinxdoc/*',
-        ],
-    },
+    packages=find_packages(exclude=['*.tests', '*.tests.*']),
+    include_package_data=True,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'Natural Language :: English',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
     ],

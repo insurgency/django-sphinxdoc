@@ -1,0 +1,105 @@
+# Spanish translation of django-sphinxdoc
+# Copyright (C) 2013
+# This file is distributed under the same license as the django-sphinxdoc package.
+# Ales Zabala Alava (Shagi) <shagi@gisa-elkartea.org>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-07 13:57+0100\n"
+"PO-Revision-Date: 2013-02-07 13:58+0100\n"
+"Last-Translator: Ales Zabala Alava (Shagi) <shagi@gisa-elkartea.org>\n"
+"Language-Team: Spanish\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: models.py:21
+msgid "Used in the URL for the project. Must be unique."
+msgstr "Usado en la URL del proyecto. Tiene que ser único."
+
+#: models.py:23
+msgid "Directory that contains Sphinx’ <tt>conf.py</tt>."
+msgstr "Directorio que contiene el <tt>conf.py</tt> de Sphinx."
+
+#: models.py:26
+msgid "project"
+msgstr "proyecto"
+
+#: models.py:27
+msgid "projects"
+msgstr "proyectos"
+
+#: models.py:51
+msgid "document"
+msgstr "documento"
+
+#: models.py:52
+msgid "documents"
+msgstr "documentos"
+
+#: templates/sphinxdoc/documentation.html:10
+#, python-format
+msgid "%(project_name)s documentation"
+msgstr "Documentación de %(project_name)s"
+
+#: templates/sphinxdoc/documentation.html:19
+#: templates/sphinxdoc/documentation.html:38
+msgid "Prev:"
+msgstr "Anterior:"
+
+#: templates/sphinxdoc/documentation.html:23
+#: templates/sphinxdoc/documentation.html:42
+msgid "Next:"
+msgstr "Siguiente:"
+
+#: templates/sphinxdoc/documentation.html:46
+#, python-format
+msgid "%(project.name)s documentation"
+msgstr "Documentación de %(project.name)s"
+
+#: templates/sphinxdoc/documentation.html:53
+msgid "Last update:"
+msgstr "Última actualización"
+
+#: templates/sphinxdoc/documentation.html:61
+msgid "Contents"
+msgstr "Contenidos"
+
+#: templates/sphinxdoc/documentation.html:66
+#: templates/sphinxdoc/documentation.html:68
+msgid "Search"
+msgstr "Buscar"
+
+#: templates/sphinxdoc/genindex.html:5
+msgid "General Index"
+msgstr "Índice general"
+
+#: templates/sphinxdoc/genindex.html:30
+msgid "[Link]"
+msgstr "[Enlace]"
+
+#: templates/sphinxdoc/modindex.html:5
+msgid "Module Index"
+msgstr "Índice de módulos"
+
+#: templates/sphinxdoc/project_list.html:4
+#: templates/sphinxdoc/project_list.html:8
+msgid "Documentation Overview"
+msgstr "Vista general de la documentación"
+
+#: templates/sphinxdoc/search.html:5
+msgid "Search results:"
+msgstr "Resultados de la búsqueda:"
+
+#: templates/sphinxdoc/search.html:14
+msgid "No results found."
+msgstr "No se han encontrado resultados."
+
+#: templates/sphinxdoc/search.html:18
+msgid "No search query entered."
+msgstr "No se ha introducido ninguna búsqueda."

@@ -1,4 +1,3 @@
-# encoding: utf-8
 """
 Custom form validators for this app.
 

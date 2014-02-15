@@ -12,4 +12,5 @@ One management command is provided with this app.
 .. automodule:: sphinxdoc.management.commands.updatedoc
 
     .. autoclass:: Command
-        :members: handle, build, delete_documents, import_files, update_haystack
+        :members: handle, build, delete_documents, import_files,
+                  update_haystack

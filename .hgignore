@@ -7,3 +7,5 @@ _build/*
 dist/*
 MANIFEST
 *.egg-info/*
+*swp
+.idea

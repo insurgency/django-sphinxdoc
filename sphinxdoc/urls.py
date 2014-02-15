@@ -3,7 +3,13 @@
 URL conf for django-sphinxdoc.
 
 """
-from django.conf.urls.defaults import patterns, url
+
+# Django <= 1.5
+try:
+    from django.conf.urls.defaults import patterns, url
+# Django >= 1.6
+except ImportError:
+    from django.conf.urls import patterns, url
 
 from sphinxdoc.views import ProjectSearchView
 from sphinxdoc.views import OverviewList
@@ -13,6 +19,7 @@ urlpatterns = patterns('sphinxdoc.views',
     url(
         r'^$',
         OverviewList.as_view(),
+        name='docs-list',
     ),
     url(
         r'^(?P<slug>[\w-]+)/search/$',
@@ -23,8 +30,8 @@ urlpatterns = patterns('sphinxdoc.views',
     # static HTML files work correctly and that browsers know how to name files
     # for download
     url(
-        r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/' + \
-                r'(?P<path>.+)$',
+        (r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/'
+         r'(?P<path>.+)$'),
         'sphinx_serve',
     ),
     url(
@@ -37,6 +44,12 @@ urlpatterns = patterns('sphinxdoc.views',
         'documentation',
         {'path': ''},
         name='doc-index',
+    ),
+    url(
+        r'^(?P<slug>[\w-]+)/genindex/$',
+        'documentation',
+        {'path': 'genindex'},
+        name='doc-genindex',
     ),
     url(
         r'^(?P<slug>[\w-]+)/(?P<path>.+)/$',

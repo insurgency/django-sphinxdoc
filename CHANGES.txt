@@ -2,11 +2,29 @@
 Changelog for django-sphinxdoc
 ==============================
 
+v1.2.1 – 2013-12-20:
+--------------------
+
+- [NEW] Option ``--all`` to update docs for all projects
+- [NEW] Filters for the project admin
+- [NEW] Setting: ``SPHINXDOC_CACHE_MINUTES``
+- [NEW] Setting: ``SPHINXDOC_BUILD_DIR``
+- [FIX] Titles for generated domain indexes
+
+
+v1.2 – 2013-08-11:
+------------------
+
+- [NEW] I18n and l10n for Spanish and Basque, by Ales Zabala Alava
+- [CHANGE] Use class-based views, by Josiah Klassen
+- [CHANGE] Migration to Haystack 2, by Andres Riancho
+- [FIX] Inclusion of search index template in package, by Mike Shantz
+
 
 v1.1 – 2012-04-19:
 ------------------
 
-- [NEW] Support static and download files.
+- [NEW] Support static and download files.
 - [NEW] Additional context to search view so that project information is
   available in the template.
 - [CHANGE] Updated some `templates

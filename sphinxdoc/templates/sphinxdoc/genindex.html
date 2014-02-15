@@ -1,7 +1,8 @@
 {% extends 'sphinxdoc/documentation.html' %}
+{% load i18n %}
 
 {% block doc_body %}
-    <h1>General Index</h1>
+    <h1>{% trans "General Index" %}</h1>
     <p class="indexletters">
     {% for letter, _ in doc.genindexentries %}
         <a href="#{{ letter }}">{{ letter }}</a> {% if not forloop.last %} •{% endif %}
@@ -26,7 +27,7 @@
                 {% for subname, sublinks in contents.1 %}
         <dd>
             <a href="{{ sublinks.0 }}">{{ subname }}</a>
-                    {% for link in sublinks|slice:"1:" %}, <a href="{{ link }}">[Link]</a>{% endfor %}
+                    {% for link in sublinks|slice:"1:" %}, <a href="{{ link }}">{% trans "[Link]" %}</a>{% endfor %}
         </dd>
                 {% endfor %}
             {% endif %}
