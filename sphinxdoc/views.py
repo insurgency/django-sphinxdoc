@@ -100,10 +100,7 @@ def objects_inventory(request, slug):
 @user_allowed_for_project
 @cache_page(60 * CACHE_MINUTES)
 def sphinx_serve(request, slug, type_, path):
-    """
-    Serves sphinx static and other files.
-
-    """
+    """Serves sphinx static and other files."""
     project = get_object_or_404(Project, slug=slug)
     return serve(
         request,
@@ -175,8 +172,7 @@ class ProjectSearchView(SearchView):
 
 
 class OverviewList(ListView):
-    """
-    Listing of all projects available.
+    """Listing of all projects available.
     
     Extends :class:`django.views.generic.list.ListView`.
 
