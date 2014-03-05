@@ -2,6 +2,12 @@
 Changelog for django-sphinxdoc
 ==============================
 
+v1.3 – 2014-03-05:
+------------------
+
+- [NEW] Projects can now be protected authentication.
+
+
 v1.2.1 – 2013-12-20:
 --------------------
 
