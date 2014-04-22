@@ -71,6 +71,9 @@ class Command(BaseCommand):
         if update_all:
             for project in Project.objects.all():
                 self.update_project(project, options)
+
+            self.update_haystack()
+
         elif args:
             for slug in args:
                 try:
@@ -79,8 +82,13 @@ class Command(BaseCommand):
                     raise CommandError('Project "%s" does not exist' % slug)
                 else:
                     self.update_project(project, options)
+
+            self.update_haystack()
+
         else:
             raise CommandError('No project(s) specified.')
+
+        print 'Done'
 
     def update_project(self, project, options):
         """
@@ -99,11 +107,6 @@ class Command(BaseCommand):
         
         print 'Importing JSON files for "%s" ...' % project.slug
         self.import_files(project)
-
-        print 'Updating search index for "%s" ...' % project.slug
-        self.update_haystack()
-
-        print 'Done'
 
     def build(self, project, virtualenv=''):
         """Runs ``sphinx-build`` for ``project``. You can also specify a path
@@ -169,4 +172,5 @@ class Command(BaseCommand):
 
     def update_haystack(self):
         """Updates Haystack's search index."""
+        print 'Updating search index for all projects ...'
         call_command('rebuild_index', interactive=False)
