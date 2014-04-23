@@ -88,24 +88,24 @@ class Command(BaseCommand):
         else:
             raise CommandError('No project(s) specified.')
 
-        print 'Done'
+        print('Done')
 
     def update_project(self, project, options):
         """
         Updates (and optionally builds) the documenation for a given project.
-        
+
         """
         build = options['build']
         virtualenv = options['virtualenv']
-        
+
         if build:
-            print 'Running "sphinx--build" for "%s" ...' % project.slug
+            print('Running "sphinx--build" for "%s" ...' % project.slug)
             self.build(project, virtualenv)
 
-        print 'Deleting old entries from database ...'
+        print('Deleting old entries from database ...')
         self.delete_documents(project)
-        
-        print 'Importing JSON files for "%s" ...' % project.slug
+
+        print('Importing JSON files for "%s" ...' % project.slug)
         self.import_files(project)
 
     def build(self, project, virtualenv=''):
@@ -126,7 +126,7 @@ class Command(BaseCommand):
             project.path,
             os.path.join(project.path, BUILDDIR, 'json'),
         ]
-        print 'Executing %s' % ' '.join(cmd)
+        print('Executing %s' % ' '.join(cmd))
         subprocess.call(cmd)
 
     def delete_documents(self, project):
@@ -140,7 +140,7 @@ class Command(BaseCommand):
         """
         path = os.path.join(project.path, BUILDDIR, 'json')
         for dirpath, dirnames, filenames in os.walk(path):
-            for name in filter(lambda x: x.endswith(EXTENSION), filenames):
+            for name in (x for x in filenames if x.endswith(EXTENSION)):
                 # Full path to the json file
                 filepath = os.path.join(dirpath, name)
 
@@ -172,5 +172,5 @@ class Command(BaseCommand):
 
     def update_haystack(self):
         """Updates Haystack's search index."""
-        print 'Updating search index for all projects ...'
+        print('Updating search index for all projects ...')
         call_command('rebuild_index', interactive=False)

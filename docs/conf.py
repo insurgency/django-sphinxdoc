@@ -1,5 +1,4 @@
 # flake8: noqa
-# -*- coding: utf-8 -*-
 #
 # django-sphinxdoc documentation build configuration file, created by
 # sphinx-quickstart on Fri Sep 10 23:12:48 2010.
@@ -45,8 +44,8 @@ source_suffix = '.txt'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-sphinxdoc'
-copyright = u'2010, Stefan Scherfke'
+project = 'django-sphinxdoc'
+copyright = '2010, Stefan Scherfke'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -183,8 +182,8 @@ htmlhelp_basename = 'django-sphinxdocdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('ind', 'django-sphinxdoc.tex', u'django-sphinxdoc Documentation',
-   u'Stefan Scherfke', 'manual'),
+  ('ind', 'django-sphinxdoc.tex', 'django-sphinxdoc Documentation',
+   'Stefan Scherfke', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -216,8 +215,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('ind', 'django-sphinxdoc', u'django-sphinxdoc Documentation',
-     [u'Stefan Scherfke'], 1)
+    ('ind', 'django-sphinxdoc', 'django-sphinxdoc Documentation',
+     ['Stefan Scherfke'], 1)
 ]
 
 

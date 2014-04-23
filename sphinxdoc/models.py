@@ -1,4 +1,3 @@
-# encoding: utf-8
 """
 Models for django-sphinxdoc.
 
@@ -18,10 +17,10 @@ class Project(models.Model):
     """
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True,
-                            help_text=_(u'Used in the URL for the project. '
+                            help_text=_('Used in the URL for the project. '
                                         'Must be unique.'))
     path = models.CharField(max_length=255, validators=[validate_isdir],
-                            help_text=_(u'Directory that contains Sphinx’ '
+                            help_text=_('Directory that contains Sphinx’ '
                                         '<tt>conf.py</tt>.'))
 
     class Meta:
