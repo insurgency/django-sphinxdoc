@@ -3,6 +3,7 @@
 Models for django-sphinxdoc.
 
 """
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -29,6 +30,16 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def is_allowed(self, user):
+        protected = getattr(settings, 'SPHINXDOC_PROTECTED_PROJECTS', {})
+        if not self.slug in protected:
+            # Project not protected, publicly visible
+            return True
+        if (not user.is_authenticated() or
+            not user.has_perms(protected[self.slug])):
+            return False
+        return True
 
     @models.permalink
     def get_absolute_url(self):

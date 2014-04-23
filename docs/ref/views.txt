@@ -13,3 +13,6 @@ Views
 
     .. autoclass:: ProjectSearchView
         :members:
+
+    .. autoclass:: OverviewList
+        :members:

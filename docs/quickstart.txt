@@ -70,6 +70,11 @@ Optional sphinxdoc settings in your ``settings.py``.
     sphinx builder and the sphinxdoc updater. If not set, defaults to
     *_build*.
 
+``SPHINXDOC_PROTECTED_PROJECTS``
+    A mapping of project slugs to lists of permissions indicating that users
+    are required to log in and have the list of permissions to view the
+    documented project. An empty list will just require a log in.
+
 
 Add a project
 -------------

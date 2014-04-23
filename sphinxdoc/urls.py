@@ -1,3 +1,4 @@
+# encoding: utf-8
 """
 URL conf for django-sphinxdoc.
 
@@ -10,17 +11,14 @@ try:
 except ImportError:
     from django.conf.urls import patterns, url
 
-from django.views.generic import ListView
-
-from sphinxdoc import models
 from sphinxdoc.views import ProjectSearchView
+from sphinxdoc.views import OverviewList
 
 
 urlpatterns = patterns('sphinxdoc.views',
     url(
         r'^$',
-        ListView.as_view(
-            queryset=models.Project.objects.all().order_by('name')),
+        OverviewList.as_view(),
         name='docs-list',
     ),
     url(

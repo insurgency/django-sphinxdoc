@@ -7,14 +7,18 @@ import json
 import os.path
 
 from django.conf import settings
+from django.contrib.auth.views import redirect_to_login
 from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.views.decorators.cache import cache_page
+from django.views.generic import ListView
 from django.views.static import serve
 from haystack.views import SearchView
 
+from sphinxdoc.decorators import user_allowed_for_project
 from sphinxdoc.forms import ProjectSearchForm
 from sphinxdoc.models import Project, Document
 
@@ -23,6 +27,7 @@ BUILDDIR = os.path.join('_build', 'json')
 CACHE_MINUTES = getattr(settings, 'SPHINXDOC_CACHE_MINUTES', 5)
 
 
+@user_allowed_for_project
 @cache_page(60 * CACHE_MINUTES)
 def documentation(request, slug, path):
     """Displays the contents of a :class:`sphinxdoc.models.Document`.
@@ -78,6 +83,7 @@ def documentation(request, slug, path):
                               context_instance=RequestContext(request))
 
 
+@user_allowed_for_project
 @cache_page(60 * CACHE_MINUTES)
 def objects_inventory(request, slug):
     """Renders the ``objects.inv`` as plain text."""
@@ -91,6 +97,7 @@ def objects_inventory(request, slug):
     return response
 
 
+@user_allowed_for_project
 @cache_page(60 * CACHE_MINUTES)
 def sphinx_serve(request, slug, type_, path):
     """Serves sphinx static and other files."""
@@ -113,7 +120,13 @@ class ProjectSearchView(SearchView):
 
     def __call__(self, request, slug):
         self.slug = slug
-        return SearchView.__call__(self, request)
+        try:
+            return SearchView.__call__(self, request)
+        except PermissionDenied:
+            if request.user.is_authenticated():
+                raise
+            path = request.build_absolute_uri()
+            return redirect_to_login(path)
 
     def build_form(self):
         """Instantiates the form that should be used to process the search
@@ -130,6 +143,8 @@ class ProjectSearchView(SearchView):
 
         """
         project = Project.objects.get(slug=self.slug)
+        if not project.is_allowed(self.request.user):
+            raise PermissionDenied
 
         try:
             env = json.load(open(os.path.join(project.path, BUILDDIR,
@@ -154,3 +169,25 @@ class ProjectSearchView(SearchView):
             'env': env,
             'update_date': update_date,
         }
+
+
+class OverviewList(ListView):
+    """Listing of all projects available.
+    
+    Extends :class:`django.views.generic.list.ListView`.
+
+    If the user is not authenticated, then projects defined in
+    :data:`SPHINXDOC_PROTECTED_PROJECTS` will not be listed.
+    """
+    queryset = Project.objects.all().order_by('name')
+    template_name = 'sphinxdoc/project_list.html'
+    context_object_name = 'project_list'
+
+    def get_queryset(self):
+        qs = super(OverviewList, self).get_queryset()
+        qs = [project for project in qs if project.is_allowed(self.request.user)]
+        # Note: we are not actually returning a queryset, but a list. This has
+        # some repercussions if there are dependencies elsewhere in the class
+        # on this actually being a queryset.
+        return qs
+
