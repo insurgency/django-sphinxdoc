@@ -148,7 +148,7 @@ class Command(BaseCommand):
                 relpath = os.path.relpath(filepath, path)[:-len(EXTENSION)]
 
                 # Some files have no title or body attribute
-                doc = json.load(open(filepath, 'rb'))
+                doc = json.load(open(filepath, 'r'))
                 if 'title' not in doc and 'indextitle' not in doc:
                     page_name = os.path.basename(relpath)
                     doc['title'] = SPECIAL_TITLES[page_name]

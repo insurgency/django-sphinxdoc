@@ -55,7 +55,7 @@ def documentation(request, slug, path):
 
     try:
         env = json.load(open(os.path.join(project.path, BUILDDIR,
-                                          'globalcontext.json'), 'rb'))
+                                          'globalcontext.json'), 'r'))
     except IOError:
         # It is possible that file does not exist anymore (for example, because
         # make clean to prepare for running make again), we do not want to
@@ -148,7 +148,7 @@ class ProjectSearchView(SearchView):
 
         try:
             env = json.load(open(os.path.join(project.path, BUILDDIR,
-                                              'globalcontext.json'), 'rb'))
+                                              'globalcontext.json'), 'r'))
         except IOError:
             # It is possible that file does not exist anymore (for example,
             # because make clean to prepare for running make again), we do not
@@ -173,7 +173,7 @@ class ProjectSearchView(SearchView):
 
 class OverviewList(ListView):
     """Listing of all projects available.
-    
+
     Extends :class:`django.views.generic.list.ListView`.
 
     If the user is not authenticated, then projects defined in
