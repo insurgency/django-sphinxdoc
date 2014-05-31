@@ -99,7 +99,7 @@ class Command(BaseCommand):
         virtualenv = options['virtualenv']
 
         if build:
-            print('Running "sphinx--build" for "%s" ...' % project.slug)
+            print('Running "sphinx-build" for "%s" ...' % project.slug)
             self.build(project, virtualenv)
 
         print('Deleting old entries from database ...')
@@ -127,7 +127,10 @@ class Command(BaseCommand):
             os.path.join(project.path, BUILDDIR, 'json'),
         ]
         print('Executing %s' % ' '.join(cmd))
-        subprocess.call(cmd)
+        try:
+            subprocess.call(cmd)
+        except OSError as e:
+            raise CommandError('Unable to build documentation. Ensure Sphinx is installed and on the path.')
 
     def delete_documents(self, project):
         """Deletes all documents for ``project``."""

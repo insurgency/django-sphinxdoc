@@ -14,7 +14,6 @@ setup(
     license='MIT',
     install_requires=[
         'Django>=1.4.2',
-        'Sphinx>=1.0',
         'django-haystack>=2.1',
     ],
     packages=find_packages(exclude=['*.tests', '*.tests.*']),
