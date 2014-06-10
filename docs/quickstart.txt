@@ -99,7 +99,7 @@ Build & import the documentation
 --------------------------------
 
 You need to build JSON files from your documentation and import their content
-into your site’s database. Django-sphinxdoc provides an management command to
+into your site’s database. Django-sphinxdoc provides a management command to
 help you with that:
 
 .. sourcecode:: bash
