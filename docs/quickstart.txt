@@ -106,6 +106,14 @@ help you with that:
 
     $ python manage.py updatedoc -b <project-slug>
 
+Note that the -b option requires Sphinx to be installed. If you wish to build
+your documentation elsewhere, you can use the same command without the build
+option to update the database with the pre-built files:
+
+.. sourcecode:: bash
+
+    $ python manage.py updatedoc <project-slug>
+
 
 That’s it!
 ----------
