@@ -2,6 +2,12 @@
 Changelog for django-sphinxdoc
 ==============================
 
+v1.4 – 2014-12-14:
+------------------
+
+- [NEW] Support for Python 3 (3.3 and above)
+
+
 v1.3 – 2014-03-05:
 ------------------
 
