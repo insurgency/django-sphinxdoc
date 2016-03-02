@@ -10,7 +10,7 @@ setup(
     long_description=(open('README.txt').read() + '\n\n' +
                       open('CHANGES.txt').read() + '\n\n' +
                       open('AUTHORS.txt').read()),
-    url='http://stefan.sofa-rockers.org/django-sphinxdoc/',
+    url='https://bitbucket.org/sscherfke/django-sphinxdoc/',
     license='MIT',
     install_requires=[
         'Django>=1.4.2',
