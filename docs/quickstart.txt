@@ -25,9 +25,9 @@ If you want the lates development version, isntall it from Bitbucket:
 
 .. sourcecode:: bash
 
-    $ pip install https://ssc@bitbucket.org/ssc/django-sphinxdoc
+    $ pip install https://ssc@bitbucket.org/sscherfke/django-sphinxdoc
     $ # or
-    $ hg clone ssh://hg@bitbucket.org/ssc/django-sphinxdoc
+    $ hg clone ssh://hg@bitbucket.org/sscherfke/django-sphinxdoc
     $ pip install -e django-sphinxdoc
 
 

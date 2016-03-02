@@ -40,7 +40,7 @@ v1.1 – 2012-04-19:
 - [NEW] Additional context to search view so that project information is
   available in the template.
 - [CHANGE] Updated some `templates
-  <https://bitbucket.org/ssc/django-sphinxdoc/changeset/e876d5e72b34>`_
+  <https://bitbucket.org/sscherfke/django-sphinxdoc/changeset/e876d5e72b34>`_
 - [FIX] Fixed a bug with the updatedoc command and ``~`` in paths.
 - [FIX] Include all module index files.
 - [FIX] Improved indexing behaviour
