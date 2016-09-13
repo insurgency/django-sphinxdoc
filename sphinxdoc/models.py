@@ -11,7 +11,7 @@ from sphinxdoc.validators import validate_isdir
 
 class Project(models.Model):
     """Represents a Sphinx project. Each ``Project`` has a name, a slug and
-    a path to the root directory of a Sphinx project (where Sphinx’
+    a path to the root directory of a Sphinx project (where Sphinx'
     ``conf.py``) is located).
 
     """
@@ -20,7 +20,7 @@ class Project(models.Model):
                             help_text=_('Used in the URL for the project. '
                                         'Must be unique.'))
     path = models.CharField(max_length=255, validators=[validate_isdir],
-                            help_text=_('Directory that contains Sphinx’ '
+                            help_text=_('Directory that contains Sphinx\' '
                                         '<tt>conf.py</tt>.'))
 
     class Meta:
