@@ -7,8 +7,7 @@ This Django application allows you to integrate any `Sphinx
 website instead of just serving the static files.
 
 Django-sphinxdoc can handle multiple Sphinx projects and offers a `Haystack
-<http://haystacksearch.org/>`_ powered search. Future versions will enable
-comments and add RSS feeds.
+<http://haystacksearch.org/>`_ powered search.
 
 
 Requirements
@@ -26,12 +25,17 @@ Just use `PIP <http://pypi.python.org/pypi/pip>`_:
 
     $ pip install django-sphinxdoc
 
-If you want the lates development version, isntall it from Bitbucket:
+If you want the latest development version, install it from Bitbucket
+with:
 
 .. sourcecode:: bash
 
     $ pip install https://ssc@bitbucket.org/sscherfke/django-sphinxdoc
-    $ # or
+
+or
+
+.. sourcecode:: bash
+
     $ hg clone ssh://hg@bitbucket.org/sscherfke/django-sphinxdoc
     $ pip install -e django-sphinxdoc
 
@@ -39,4 +43,4 @@ If you want the lates development version, isntall it from Bitbucket:
 Usage
 -----
 
-The Documentation can be found in the *docs/* directory.
+The documentation can be found in the *docs/* directory or at `<http://django-sphinxdoc.readthedocs.io/en/latest/>`_.
