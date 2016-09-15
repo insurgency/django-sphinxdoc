@@ -13,7 +13,7 @@ Django-sphinxdoc can handle multiple Sphinx projects and offers a `Haystack
 Requirements
 ------------
 
-This app requires Django >= 1.4.2, Sphinx >= 1.0 and Haystack >= 2.1.
+This app requires Django >= 1.6, Sphinx >= 1.0 and Haystack >= 2.1.
 
 
 Installation

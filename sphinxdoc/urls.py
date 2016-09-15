@@ -2,13 +2,7 @@
 URL conf for django-sphinxdoc.
 
 """
-
-# Django <= 1.5
-try:
-    from django.conf.urls.defaults import patterns, url
-# Django >= 1.6
-except ImportError:
-    from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url
 
 from sphinxdoc.views import ProjectSearchView
 from sphinxdoc.views import OverviewList
