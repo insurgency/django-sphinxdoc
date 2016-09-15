@@ -75,6 +75,9 @@ Optional sphinxdoc settings in your ``settings.py``.
     are required to log in and have the list of permissions to view the
     documented project. An empty list will just require a log in.
 
+``SPHINXDOC_BASE_TEMPLATE``
+    Overrides the default sphinxdoc base template ('base.html').
+
 
 Add a project
 -------------

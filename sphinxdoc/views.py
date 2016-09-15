@@ -72,6 +72,7 @@ def documentation(request, slug, path):
         update_date = datetime.datetime.fromtimestamp(0)
 
     data = {
+        'base_template': getattr(settings, 'SPHINXDOC_BASE_TEMPLATE', 'base.html'),
         'project': project,
         'doc': json.loads(doc.content),
         'env': env,
@@ -190,4 +191,10 @@ class OverviewList(ListView):
         # some repercussions if there are dependencies elsewhere in the class
         # on this actually being a queryset.
         return qs
+
+    def get_context_data(self, **kwargs):
+        kwargs['base_template'] = getattr(settings, 'SPHINXDOC_BASE_TEMPLATE', 'base.html')
+        context = super(OverviewList, self).get_context_data(**kwargs)
+        return context
+
 
