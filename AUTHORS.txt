@@ -13,5 +13,6 @@ Contributors:
 - `Andres Riancho <https://bitbucket.org/andresriancho>`_
 - `Ales Zabala Alava <https://bitbucket.org/shagi>`_
 - `Ianaré Sévi <https://bitbucket.org/ianare>`_
+- `Jimmy Krag <https://bitbucket.org/beruic>`_
 - Romain Beylerian
 - Bosco Mutunga
