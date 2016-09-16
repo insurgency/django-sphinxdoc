@@ -2,6 +2,17 @@
 Changelog for django-sphinxdoc
 ==============================
 
+
+v1.4.1 – 2014-12-14:
+--------------------
+
+- [NEW] Setting SPHINXDOC_BASE_TEMPLATE in settings.py allows overriding
+  of the base template used for documentation.
+- [FIX] UnicodeDecodeError when editing or creating a new project.
+- [CHANGE] Added migrations to ease future upgrades.
+- [CHANGE] Updated README.txt with link to online documentation.
+- [CHANGE] Removed support for Django < 1.6
+
 v1.4 – 2014-12-14:
 ------------------
 
