@@ -1,11 +1,12 @@
 syntax: glob
 
+*.egg-info/*
 *.pyc
+*swp
 *~
 .DS_Store
-_build/*
-dist/*
-MANIFEST
-*.egg-info/*
-*swp
 .idea
+MANIFEST
+_build/*
+build/*
+dist/*
