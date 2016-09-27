@@ -2,21 +2,20 @@
 URL conf for django-sphinxdoc.
 
 """
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-from sphinxdoc.views import ProjectSearchView
-from sphinxdoc.views import OverviewList
+from . import views
 
 
-urlpatterns = patterns('sphinxdoc.views',
+urlpatterns = [
     url(
         r'^$',
-        OverviewList.as_view(),
+        views.OverviewList.as_view(),
         name='docs-list',
     ),
     url(
         r'^(?P<slug>[\w-]+)/search/$',
-        ProjectSearchView(),
+        views.ProjectSearchView(),
         name='doc-search',
     ),
     # These URLs have to be without the / at the end so that relative links in
@@ -25,28 +24,28 @@ urlpatterns = patterns('sphinxdoc.views',
     url(
         (r'^(?P<slug>[\w-]+)/(?P<type_>_images|_static|_downloads|_source)/'
          r'(?P<path>.+)$'),
-        'sphinx_serve',
+        views.sphinx_serve,
     ),
     url(
         r'^(?P<slug>[\w-]+)/_objects/$',
-        'objects_inventory',
+        views.objects_inventory,
         name='objects-inv',
     ),
     url(
         r'^(?P<slug>[\w-]+)/$',
-        'documentation',
+        views.documentation,
         {'path': ''},
         name='doc-index',
     ),
     url(
         r'^(?P<slug>[\w-]+)/genindex/$',
-        'documentation',
+        views.documentation,
         {'path': 'genindex'},
         name='doc-genindex',
     ),
     url(
         r'^(?P<slug>[\w-]+)/(?P<path>.+)/$',
-        'documentation',
+        views.documentation,
         name='doc-detail',
     ),
-)
+]
