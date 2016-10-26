@@ -2,6 +2,12 @@
 Changelog for django-sphinxdoc
 ==============================
 
+v1.4.2 – 2016-10-26:
+--------------------
+
+- [CHANGE] Replaced string URLs with URL objects.  Django no longer supports
+  strings.
+
 
 v1.4.1 – 2016-09-18:
 --------------------
