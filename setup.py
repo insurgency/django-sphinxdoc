@@ -13,7 +13,7 @@ setup(
     url='https://bitbucket.org/sscherfke/django-sphinxdoc/',
     license='MIT',
     install_requires=[
-        'Django>=1.6.0',
+        'Django>=1.8,<1.11',
         'django-haystack>=2.1',
     ],
     packages=find_packages(exclude=['*.tests', '*.tests.*']),
@@ -35,4 +35,12 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
     ],
+    tests_require=[
+        'Django>=1.8,<1.11',
+        'sphinx',
+        'django-haystack>=2.1',
+        'nose',
+        'coverage',
+    ],
+    test_suite="test_sphinxdoc.run_tests.run_all",
 )

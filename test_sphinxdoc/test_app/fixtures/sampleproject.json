@@ -1,0 +1,11 @@
+[
+{
+ "model": "sphinxdoc.project",
+ "pk": 1,
+ "fields": {
+  "name": "Sample project",
+  "slug": "sampleproject",
+  "path": "test_sphinxdoc/docs/"
+ }
+}
+]
