@@ -42,7 +42,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            'project_slug', metavar='project_slug', type=unicode, nargs='*',
+            'args', metavar='project_slug', type=unicode, nargs='*',
             help='One of more project slugs to be updated.'
         )
         parser.add_argument(
@@ -69,8 +69,8 @@ class Command(BaseCommand):
 
             self.update_haystack()
 
-        elif options['project_slug']:
-            for slug in options['project_slug']:
+        elif args:
+            for slug in args:
                 try:
                     project = Project.objects.get(slug=slug)
                 except Project.DoesNotExist:
