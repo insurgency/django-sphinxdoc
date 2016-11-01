@@ -11,8 +11,7 @@ from django.contrib.auth.views import redirect_to_login
 from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
 from django.views import generic
 from django.views.static import serve
@@ -80,8 +79,7 @@ def documentation(request, slug, path):
         'search': urlresolvers.reverse('doc-search', kwargs={'slug': slug}),
     }
 
-    return render_to_response(templates, data,
-                              context_instance=RequestContext(request))
+    return render(request, templates, data)
 
 
 @user_allowed_for_project
