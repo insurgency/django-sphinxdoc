@@ -34,13 +34,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities',
-    ],
-    tests_require=[
-        'Django>=1.8,<1.11',
-        'sphinx',
-        'django-haystack>=2.1',
-        'nose',
-        'coverage',
-    ],
-    test_suite="test_sphinxdoc.run_tests.run_all",
+    ]
 )
