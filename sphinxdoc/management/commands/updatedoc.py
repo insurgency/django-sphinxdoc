@@ -3,7 +3,6 @@ Management command for updading the documentation of one or more projects.
 
 """
 import json
-import optparse
 import os
 import os.path
 import subprocess
@@ -41,8 +40,12 @@ class Command(BaseCommand):
             'projects.')
 
     def add_arguments(self, parser):
+        try:
+            unicode_type = unicode
+        except NameError:
+            unicode_type = str
         parser.add_argument(
-            'args', metavar='project_slug', type=unicode, nargs='*',
+            'args', metavar='project_slug', type=unicode_type, nargs='*',
             help='One of more project slugs to be updated.'
         )
         parser.add_argument(
@@ -124,7 +127,7 @@ class Command(BaseCommand):
         print('Executing %s' % ' '.join(cmd))
         try:
             subprocess.call(cmd)
-        except OSError as e:
+        except OSError:
             raise CommandError('Unable to build documentation. Ensure Sphinx is installed and on the path.')
 
     def delete_documents(self, project):
