@@ -16,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'haystack',
     'sphinxdoc',
-    'test_sphinxdoc.test_app',
+    'tests.test_app',
 ]
 
 TEMPLATES = [
@@ -40,7 +40,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
-ROOT_URLCONF = 'test_sphinxdoc.test_app.urls'
+ROOT_URLCONF = 'tests.test_app.urls'
 
 HAYSTACK_CONNECTIONS = {
     'default': {
