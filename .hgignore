@@ -10,6 +10,5 @@ MANIFEST
 _build/*
 build/*
 dist/*
-.eggs/*
 .coverage
 .tox/
