@@ -5,10 +5,12 @@ import pytest
 from django.core.management import call_command
 from django.conf import settings
 from sphinxdoc.models import Project
-from .factories import ProjectFactory
 
 
-__all__ = ['TestViewsContent', 'TestBaseTemplate']
+__all__ = ['test_project_list',
+           'test_doc_index',
+           'test_default_base_template',
+           'test_custom_base_template']
 
 
 @pytest.fixture
@@ -18,39 +20,40 @@ def project():
 
 
 @pytest.mark.django_db
-class TestViewsContent(object):
-    def test_project_list(self, client, project):
-        response = client.get('/docs/')
-        assert response.status_code == 200
-        expected_project_list = [project]
-        assert response.context['project_list'] == expected_project_list
-        assert response.context['object_list'] == expected_project_list
-
-    def test_doc_index(self, client, project):
-        response = client.get('/docs/sampleproject/')
-        assert response.status_code == 200
-        title = 'Sample Project'
-        content = 'This is a sample project documentation for test purpouses.'
-        body = response.content.decode('utf-8')
-        assert title in body
-        assert content in body
+def test_project_list(client, project):
+    response = client.get('/docs/')
+    assert response.status_code == 200
+    expected_project_list = [project]
+    assert response.context['project_list'] == expected_project_list
+    assert response.context['object_list'] == expected_project_list
 
 
 @pytest.mark.django_db
-class TestBaseTemplate(object):
-    def assert_base_template_used(self, client, expected_term):
-        """
-        Make sure the project list and doc index uses the given base template.
-        """
-        responses = [client.get('/docs/'),
-                     client.get('/docs/sampleproject/')]
-        for response in responses:
-            assert response.status_code == 200
-            assert expected_term in response.content.decode('utf-8')
+def test_doc_index(client, project):
+    response = client.get('/docs/sampleproject/')
+    assert response.status_code == 200
+    title = 'Sample Project'
+    content = 'This is a sample project documentation for test purpouses.'
+    body = response.content.decode('utf-8')
+    assert title in body
+    assert content in body
 
-    def test_base_template_default(self, client, project):
-        self.assert_base_template_used(client, 'standard base template')
 
-    def test_custom_base_template(self, client, project):
-        settings.SPHINXDOC_BASE_TEMPLATE = 'custom_base.html'
-        self.assert_base_template_used(client, 'custom base template')
+def assert_base_template_used(client, expected_term):
+    """
+    Make sure the project list uses the given base template.
+    """
+    response = client.get('/docs/')
+    assert response.status_code == 200
+    assert expected_term in response.content.decode('utf-8')
+
+
+@pytest.mark.django_db
+def test_default_base_template(client, project):
+    assert_base_template_used(client, 'standard base template')
+
+
+@pytest.mark.django_db
+def test_custom_base_template(client, project):
+    settings.SPHINXDOC_BASE_TEMPLATE = 'custom_base.html'
+    assert_base_template_used(client, 'custom base template')
