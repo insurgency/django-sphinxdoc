@@ -16,3 +16,4 @@ Contributors:
 - `Jimmy Krag <https://bitbucket.org/beruic>`_
 - Romain Beylerian
 - Bosco Mutunga
+- `Michel Sabchuk <https://bitbucket.org/michelts>`_

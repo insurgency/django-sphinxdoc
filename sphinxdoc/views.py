@@ -11,10 +11,9 @@ from django.contrib.auth.views import redirect_to_login
 from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404, render_to_response
-from django.template import RequestContext
+from django.shortcuts import get_object_or_404, render
 from django.views.decorators.cache import cache_page
-from django.views.generic import ListView
+from django.views import generic
 from django.views.static import serve
 from haystack.views import SearchView
 
@@ -80,8 +79,7 @@ def documentation(request, slug, path):
         'search': urlresolvers.reverse('doc-search', kwargs={'slug': slug}),
     }
 
-    return render_to_response(templates, data,
-                              context_instance=RequestContext(request))
+    return render(request, templates, data)
 
 
 @user_allowed_for_project
@@ -172,29 +170,20 @@ class ProjectSearchView(SearchView):
         }
 
 
-class OverviewList(ListView):
+class OverviewList(generic.TemplateView):
     """Listing of all projects available.
-
-    Extends :class:`django.views.generic.list.ListView`.
 
     If the user is not authenticated, then projects defined in
     :data:`SPHINXDOC_PROTECTED_PROJECTS` will not be listed.
     """
-    queryset = Project.objects.all().order_by('name')
     template_name = 'sphinxdoc/project_list.html'
-    context_object_name = 'project_list'
-
-    def get_queryset(self):
-        qs = super(OverviewList, self).get_queryset()
-        qs = [project for project in qs if project.is_allowed(self.request.user)]
-        # Note: we are not actually returning a queryset, but a list. This has
-        # some repercussions if there are dependencies elsewhere in the class
-        # on this actually being a queryset.
-        return qs
 
     def get_context_data(self, **kwargs):
         kwargs['base_template'] = getattr(settings, 'SPHINXDOC_BASE_TEMPLATE', 'base.html')
+        kwargs['project_list'] = kwargs['object_list'] = self.get_project_list()
         context = super(OverviewList, self).get_context_data(**kwargs)
         return context
 
-
+    def get_project_list(self):
+        qs = Project.objects.all().order_by('name')
+        return [proj for proj in qs if proj.is_allowed(self.request.user)]
