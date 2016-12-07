@@ -2,6 +2,14 @@
 Changelog for django-sphinxdoc
 ==============================
 
+v1.5.0 – 2016-12-07:
+--------------------
+
+- [CHANGE] Minimal supported Django version is 1.8
+- [NEW] Tests with pytest and tox
+- [FIX] Refactorings and clean-ups
+
+
 v1.4.2 – 2016-10-26:
 --------------------
 
