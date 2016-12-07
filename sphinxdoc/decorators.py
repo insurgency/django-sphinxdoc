@@ -30,5 +30,3 @@ def user_allowed_for_project(view_func):
         path = request.build_absolute_uri()
         return redirect_to_login(path)
     return _wrapped_view
-
-

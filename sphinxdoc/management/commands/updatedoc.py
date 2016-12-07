@@ -3,7 +3,6 @@ Management command for updading the documentation of one or more projects.
 
 """
 import json
-import optparse
 import os
 import os.path
 import subprocess
@@ -39,36 +38,35 @@ class Command(BaseCommand):
     args = '[-b [--virtualenv <path/to/bin/>]] <project_slug project_slug ...>'
     help = ('Updates the documentation and the search index for the specified '
             'projects.')
-    option_list = BaseCommand.option_list + (
-        optparse.make_option(
-            '-b', '--build',
-            action='store_true',
-            dest='build',
-            default=False,
-            help='Run "sphinx-build" for each project before updating it.'),
-        optparse.make_option(
-            '--virtualenv',
-            dest='virtualenv',
-            default='',
-            help='Use this virtualenv to build project docs.',
-        ),
-        optparse.make_option(
-            '-a', '--all',
-            action='store_true',
-            dest='update_all',
-            default=False,
-            help='Update all projects.',
-        ),
-    )
+
+    def add_arguments(self, parser):
+        try:
+            unicode_type = unicode
+        except NameError:
+            unicode_type = str
+        parser.add_argument(
+            'args', metavar='project_slug', type=unicode_type, nargs='*',
+            help='One of more project slugs to be updated.'
+        )
+        parser.add_argument(
+            '-b', '--build', action='store_true', dest='build', default=False,
+            help='Run "sphinx-build" for each project before updating it.'
+        )
+        parser.add_argument(
+            '--virtualenv', dest='virtualenv', default='',
+            help='Use this virtualenv to build project docs.'
+        )
+        parser.add_argument(
+            '-a', '--all', action='store_true', dest='update_all', default=False,
+            help='Update all projects.'
+        )
 
     def handle(self, *args, **options):
         """Updates (and optionally builds) the documenation for all projects,
         either as a list specifed in ``args``, or get all from database.
 
         """
-        update_all = options['update_all']
-
-        if update_all:
+        if options['update_all']:
             for project in Project.objects.all():
                 self.update_project(project, options)
 
@@ -129,7 +127,7 @@ class Command(BaseCommand):
         print('Executing %s' % ' '.join(cmd))
         try:
             subprocess.call(cmd)
-        except OSError as e:
+        except OSError:
             raise CommandError('Unable to build documentation. Ensure Sphinx is installed and on the path.')
 
     def delete_documents(self, project):

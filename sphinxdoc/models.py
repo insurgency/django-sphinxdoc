@@ -32,11 +32,12 @@ class Project(models.Model):
 
     def is_allowed(self, user):
         protected = getattr(settings, 'SPHINXDOC_PROTECTED_PROJECTS', {})
-        if not self.slug in protected:
+        if self.slug not in protected:
             # Project not protected, publicly visible
             return True
-        if (not user.is_authenticated() or
-            not user.has_perms(protected[self.slug])):
+        is_denied = (not user.is_authenticated() or
+                     not user.has_perms(protected[self.slug]))
+        if is_denied:
             return False
         return True
 

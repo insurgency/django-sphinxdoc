@@ -19,7 +19,9 @@ class ProjectSearchForm(SearchForm):
     def __init__(self, *args, **kwargs):
         slug = kwargs.pop('slug')
         project = Project.objects.get(slug=slug)
-        kwargs['searchqueryset'] = (kwargs.get('searchqueryset') or
-            SearchQuerySet()).models(Document).filter(project=project.id)
+        kwargs['searchqueryset'] = (
+            kwargs.get('searchqueryset') or
+            SearchQuerySet()
+        ).models(Document).filter(project=project.id)
 
         SearchForm.__init__(self, *args, **kwargs)

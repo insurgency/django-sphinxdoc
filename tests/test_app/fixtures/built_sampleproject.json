@@ -1,0 +1,44 @@
+[
+{
+ "model": "sphinxdoc.project",
+ "pk": 1,
+ "fields": {
+  "name": "Sample project",
+  "slug": "sampleproject",
+  "path": "test_sphinxdoc/docs/"
+ }
+},
+{
+ "model": "sphinxdoc.document",
+ "pk": 1,
+ "fields": {
+  "project": 1,
+  "path": "search",
+  "content": "{\"body\": \"\", \"title\": \"Search\", \"customsidebar\": null, \"current_page_name\": \"search\", \"sidebars\": null, \"alabaster_version\": \"0.7.9\"}",
+  "title": "Search",
+  "body": ""
+ }
+},
+{
+ "model": "sphinxdoc.document",
+ "pk": 2,
+ "fields": {
+  "project": 1,
+  "path": "index",
+  "content": "{\"body\": \"<div class=\\\"section\\\" id=\\\"sample-project\\\">\\n<h1>Sample Project<a class=\\\"headerlink\\\" href=\\\"#sample-project\\\" title=\\\"Permalink to this headline\\\">\\u00b6</a></h1>\\n<p>This is a sample project documentation for test purpouses.</p>\\n</div>\\n\", \"prev\": null, \"display_toc\": false, \"title\": \"Sample Project\", \"sourcename\": \"index.txt\", \"customsidebar\": null, \"current_page_name\": \"index\", \"next\": null, \"sidebars\": null, \"metatags\": \"\", \"meta\": {}, \"parents\": [], \"rellinks\": [[\"genindex\", \"General Index\", \"I\", \"index\"]], \"toc\": \"<ul>\\n<li><a class=\\\"reference internal\\\" href=\\\"#\\\">Sample Project</a></li>\\n</ul>\\n\", \"alabaster_version\": \"0.7.9\", \"page_source_suffix\": \".rst\"}",
+  "title": "Sample Project",
+  "body": "<div class=\"section\" id=\"sample-project\">\n<h1>Sample Project<a class=\"headerlink\" href=\"#sample-project\" title=\"Permalink to this headline\">\u00b6</a></h1>\n<p>This is a sample project documentation for test purpouses.</p>\n</div>\n"
+ }
+},
+{
+ "model": "sphinxdoc.document",
+ "pk": 3,
+ "fields": {
+  "project": 1,
+  "path": "genindex",
+  "content": "{\"genindexcounts\": [], \"body\": \"\", \"genindexentries\": [], \"title\": \"General Index\", \"customsidebar\": null, \"current_page_name\": \"genindex\", \"sidebars\": null, \"split_index\": false, \"alabaster_version\": \"0.7.9\"}",
+  "title": "General Index",
+  "body": ""
+ }
+}
+]
