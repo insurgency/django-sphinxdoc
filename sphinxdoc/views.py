@@ -113,8 +113,8 @@ class ProjectSearchView(SearchView):
     request and displays the results as a simple list.
 
     """
-    def __init__(self):
-        SearchView.__init__(self, form_class=ProjectSearchForm,
+    def __init__(self, form_class=ProjectSearchForm):
+        SearchView.__init__(self, form_class=form_class,
                             template='sphinxdoc/search.html')
 
     def __call__(self, request, slug):
