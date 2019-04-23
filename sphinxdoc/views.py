@@ -8,10 +8,10 @@ import os.path
 
 from django.conf import settings
 from django.contrib.auth.views import redirect_to_login
-from django.core import urlresolvers
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from django.views.decorators.cache import cache_page
 from django.views import generic
 from django.views.static import serve
@@ -76,7 +76,7 @@ def documentation(request, slug, path):
         'doc': json.loads(doc.content),
         'env': env,
         'update_date': update_date,
-        'search': urlresolvers.reverse('doc-search', kwargs={'slug': slug}),
+        'search': reverse('doc-search', kwargs={'slug': slug}),
     }
 
     return render(request, templates, data)
