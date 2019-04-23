@@ -122,7 +122,7 @@ class ProjectSearchView(SearchView):
         try:
             return SearchView.__call__(self, request)
         except PermissionDenied:
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 raise
             path = request.build_absolute_uri()
             return redirect_to_login(path)

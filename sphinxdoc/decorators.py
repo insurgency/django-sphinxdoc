@@ -25,7 +25,7 @@ def user_allowed_for_project(view_func):
         project = get_object_or_404(Project, slug=slug)
         if project.is_allowed(request.user):
             return view_func(request, *args, **kwargs)
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             raise PermissionDenied
         path = request.build_absolute_uri()
         return redirect_to_login(path)

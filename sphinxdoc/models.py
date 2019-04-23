@@ -36,7 +36,7 @@ class Project(models.Model):
         if self.slug not in protected:
             # Project not protected, publicly visible
             return True
-        is_denied = (not user.is_authenticated() or
+        is_denied = (not user.is_authenticated or
                      not user.has_perms(protected[self.slug]))
         if is_denied:
             return False
