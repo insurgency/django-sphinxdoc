@@ -1,4 +1,5 @@
 -e .
 pytest-django
+pytest-cov
 factory_boy
 sphinx
