@@ -5,6 +5,7 @@ Models for django-sphinxdoc.
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse
 
 from sphinxdoc.validators import validate_isdir
 
@@ -35,15 +36,14 @@ class Project(models.Model):
         if self.slug not in protected:
             # Project not protected, publicly visible
             return True
-        is_denied = (not user.is_authenticated() or
+        is_denied = (not user.is_authenticated or
                      not user.has_perms(protected[self.slug]))
         if is_denied:
             return False
         return True
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('doc-index', (), {'slug': self.slug})
+        return reverse('doc-index', kwargs={'slug': self.slug})
 
 
 class Document(models.Model):
@@ -52,7 +52,7 @@ class Document(models.Model):
     the Haystack search.
 
     """
-    project = models.ForeignKey(Project)
+    project = models.ForeignKey(Project, on_delete=models.PROTECT)
     path = models.CharField(max_length=255)
     content = models.TextField()
     title = models.CharField(max_length=255)
@@ -65,9 +65,6 @@ class Document(models.Model):
     def __unicode__(self):
         return self.path
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('doc-detail', (), {
-            'slug': self.project.slug,
-            'path': self.path,
-        })
+        return reverse(
+            'doc-detail', kwargs={'slug': self.project.slug, 'path': self.path})
