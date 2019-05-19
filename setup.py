@@ -12,6 +12,7 @@ setup(
                       open('AUTHORS.txt').read()),
     url='https://bitbucket.org/sscherfke/django-sphinxdoc/',
     license='MIT',
+    python_requires='>=3.6',
     install_requires=[
         'Django>=2.0',
         'django-haystack>=2.8.0',
@@ -27,6 +28,7 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Django',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Libraries :: Python Modules',
