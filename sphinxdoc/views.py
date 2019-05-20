@@ -41,14 +41,14 @@ def documentation(request, slug, path):
     path = path.rstrip('/')
 
     try:
-        index = 'index' if path == '' else '%s/index' % path
+        index = 'index' if path == '' else f'{path}/index'
         doc = Document.objects.get(project=project, path=index)
     except ObjectDoesNotExist:
         doc = get_object_or_404(Document, project=project, path=path)
 
     # genindex and modindex get a special template
     templates = (
-        'sphinxdoc/%s.html' % os.path.basename(path),
+        f'sphinxdoc/{os.path.basename(path)}.html',
         'sphinxdoc/documentation.html',
     )
 

@@ -77,7 +77,7 @@ class Command(BaseCommand):
                 try:
                     project = Project.objects.get(slug=slug)
                 except Project.DoesNotExist:
-                    raise CommandError('Project "%s" does not exist' % slug)
+                    raise CommandError(f'Project "{slug}" does not exist')
                 else:
                     self.update_project(project, options)
 
@@ -97,13 +97,13 @@ class Command(BaseCommand):
         virtualenv = options['virtualenv']
 
         if build:
-            print('Running "sphinx-build" for "%s" ...' % project.slug)
+            print(f'Running "sphinx-build" for "{project.slug}" ...')
             self.build(project, virtualenv)
 
         print('Deleting old entries from database ...')
         self.delete_documents(project)
 
-        print('Importing JSON files for "%s" ...' % project.slug)
+        print(f'Importing JSON files for "{project.slug}" ...')
         self.import_files(project)
 
     def build(self, project, virtualenv=''):
@@ -124,7 +124,7 @@ class Command(BaseCommand):
             project.path,
             os.path.join(project.path, BUILDDIR, 'json'),
         ]
-        print('Executing %s' % ' '.join(cmd))
+        print(f'Executing {" ".join(cmd)}')
         try:
             subprocess.call(cmd)
         except OSError:
