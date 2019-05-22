@@ -1,0 +1,22 @@
+image: python
+
+stages:
+- tox
+
+before_script:
+- pip install -r test_requirements.txt
+
+python36:
+  image: python:3.6
+  stage: tox
+  script: tox -e 'py36-django{20,21,22}'
+
+python37:
+  image: python:3.7
+  stage: tox
+  script: tox -e 'py37-django{20,21,22}'
+
+flake8:
+  image: python
+  stage: tox
+  script: tox -e flake8

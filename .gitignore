@@ -1,0 +1,13 @@
+*.egg-info/*
+*.pyc
+*swp
+*~
+.DS_Store
+.idea
+MANIFEST
+**/_build/*
+build/*
+dist/*
+.coverage
+.tox/
+.pytest_cache/
