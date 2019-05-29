@@ -1,13 +1,13 @@
+**/_build/*
 *.egg-info/*
 *.pyc
 *swp
 *~
 .DS_Store
+.coverage
 .idea
+.pytest_cache/
+.tox/
 MANIFEST
-**/_build/*
 build/*
 dist/*
-.coverage
-.tox/
-.pytest_cache/

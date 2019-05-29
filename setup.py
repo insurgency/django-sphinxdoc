@@ -5,12 +5,11 @@ setup(
     name='django-sphinxdoc',
     version='2.0.0',
     author='Stefan Scherfke',
-    author_email='stefan at sofa-rockers.org',
+    author_email='stefan@sofa-rockers.org',
     description='Easily integrate Sphinx documentation into your website.',
-    long_description=(open('README.txt').read() + '\n\n' +
-                      open('CHANGES.txt').read() + '\n\n' +
-                      open('AUTHORS.txt').read()),
-    url='https://bitbucket.org/sscherfke/django-sphinxdoc/',
+    long_description=(open('README.md').read()),
+    long_description_content_type='text/markdown',
+    url='https://gitlab.com/sscherfke/django-sphinxdoc',
     license='MIT',
     python_requires='>=3.6',
     install_requires=[
