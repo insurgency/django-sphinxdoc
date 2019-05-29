@@ -1,28 +1,28 @@
 image: python
 
-stages:
-  - test
-  - build
-
 before_script:
   - pip install -r test_requirements.txt
 
-python36:
-  image: python:3.6
-  stage: tox
-  script: tox -e 'py36-django{20,21,22}'
-
-python37:
-  image: python:3.7
-  stage: tox
-  script: tox -e 'py37-django{20,21,22}'
-
-flake8:
-  stage: tox
-  script: tox -e flake8
-
+stages:
+  - build
+  - test
+  
 build:
   stage: build
   script:
     - python setup.py sdist
     - python setup.py bdist_wheel
+
+python36:
+  image: python:3.6
+  stage: test
+  script: tox -e 'py36-django{20,21,22}'
+
+python37:
+  image: python:3.7
+  stage: test
+  script: tox -e 'py37-django{20,21,22}'
+
+flake8:
+  stage: test
+  script: tox -e flake8
