@@ -12,6 +12,9 @@ build:
   script:
     - python setup.py sdist
     - python setup.py bdist_wheel
+  artifacts:
+    paths:
+      - dist
 
 python36:
   image: python:3.6
