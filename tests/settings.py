@@ -1,6 +1,4 @@
-from __future__ import unicode_literals
-
-SECRET_KEY = "Please do not spew DeprecationWarnings"
+SECRET_KEY = 'Please do not spew DeprecationWarnings'
 
 DATABASES = {
     'default': {

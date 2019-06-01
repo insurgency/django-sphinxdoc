@@ -1,11 +1,17 @@
 image: python
 
-stages:
-  - test
-  - build
-
 before_script:
   - pip install -r test_requirements.txt
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - python setup.py sdist
+    - python setup.py bdist_wheel
 
 python36:
   image: python:3.6
@@ -20,9 +26,3 @@ python37:
 flake8:
   stage: tox
   script: tox -e flake8
-
-build:
-  stage: build
-  script:
-    - python setup.py sdist
-    - python setup.py bdist_wheel
