@@ -1,7 +1,7 @@
 Changelog for django-sphinxdoc
 ==============================
 
-## v2.0.0 – 2019-05-29:
+## v2.0.0 – 2019-06-02:
 
 - [BREAKING] Minimal supported Python version is 3.6
 - [BREAKING] Minimal supported Django version is 2.0
