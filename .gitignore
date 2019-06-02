@@ -1,5 +1,5 @@
-**/_build/*
-*.egg-info/*
+**/_build/
+*.egg-info/
 *.pyc
 *swp
 *~
@@ -9,5 +9,5 @@
 .pytest_cache/
 .tox/
 MANIFEST
-build/*
-dist/*
+build/
+dist/

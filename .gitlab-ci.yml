@@ -6,7 +6,7 @@ before_script:
 stages:
   - build
   - test
-  
+
 build:
   stage: build
   script:
