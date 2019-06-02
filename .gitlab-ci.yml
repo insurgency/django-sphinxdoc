@@ -11,7 +11,13 @@ build:
   stage: build
   script:
     - python setup.py sdist
+    - pip install dist/*.tar.gz
+    - python -c 'import sphinxdoc; print(sphinxdoc.__version__)'
+    - pip uninstall --yes --quiet django-sphinxdoc
     - python setup.py bdist_wheel
+    - pip install dist/*.whl
+    - python -c 'import sphinxdoc; print(sphinxdoc.__version__)'
+    - pip uninstall --yes --quiet django-sphinxdoc
   artifacts:
     paths:
       - dist

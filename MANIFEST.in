@@ -1,3 +1,5 @@
+include *.md
 include *.txt
 recursive-include docs *
-recursive-include sphinxdoc/templates *
+recursive-include src/sphinxdoc/templates *
+recursive-include tests *
